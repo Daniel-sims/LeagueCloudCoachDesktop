@@ -6,10 +6,10 @@
         xmlns:local="clr-namespace:LeagueCloudCoachDesktop"
         mc:Ignorable="d"
         Title="LeagueCloudCoach"
-        d:DesignHeight="800"
-        d:DesignWidth="1600"
-        MinHeight="800" 
-        MinWidth="1600"
+        d:DesignHeight="600"
+        d:DesignWidth="1200"
+        MinHeight="600" 
+        MinWidth="1200"
         DataContext="{Binding Main, Source={StaticResource Locator}}">
 
     <Grid>

@@ -14,7 +14,7 @@
     <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
         <TextBlock Text="League Cloud Coach" Style="{StaticResource MaterialDesignHeadlineTextBlock}" FontSize="50" FontWeight="Thin" Foreground="{StaticResource PrimaryHueDarkBrush}"/>
         <TextBlock Text="Beta version " Style="{StaticResource MaterialDesignSubheadingTextBlock}" FontWeight="Thin"  HorizontalAlignment="Center"/>
-        <materialDesign:Transitioner SelectedIndex="0" AutoApplyTransitionOrigins="True" Margin="0,100,0,0">
+        <materialDesign:Transitioner SelectedIndex="0" AutoApplyTransitionOrigins="True" Margin="0,50,0,0">
             <materialDesign:TransitionerSlide OpeningEffect="{materialDesign:TransitionEffect FadeIn}">
                 <loginView:LoginSignInView />
             </materialDesign:TransitionerSlide>
