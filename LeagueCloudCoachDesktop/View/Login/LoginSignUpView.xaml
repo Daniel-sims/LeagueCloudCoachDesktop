@@ -1,0 +1,30 @@
+﻿<UserControl x:Class="LeagueCloudCoachDesktop.View.Login.LoginSignUpView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:LeagueCloudCoachDesktop.View.Login"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+
+    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+        <StackPanel Orientation="Vertical">
+            <TextBlock Text="Sign up" HorizontalAlignment="Center" VerticalAlignment="Center"
+                       Style="{StaticResource MaterialDesignDisplay1TextBlock}"
+                       Foreground="{StaticResource PrimaryHueDarkBrush}" />
+            <StackPanel Margin="0,25,0,0">
+                <StackPanel>
+                    <TextBox materialDesign:HintAssist.Hint="Username" Width="200" Margin="0,0,0,15" />
+                    <TextBox materialDesign:HintAssist.Hint="Email" Width="200" Margin="0,0,0,15" />
+                    <PasswordBox materialDesign:HintAssist.Hint="Password" Width="200" Margin="0,0,0,15" />
+                    <PasswordBox materialDesign:HintAssist.Hint="Confirm Password" Width="200" />
+                    <Button Content="Sign Up" Style="{StaticResource MaterialDesignRaisedDarkButton}" 
+                            Width="200" Height="30" Margin="0,25,0,0" Background="{StaticResource PrimaryHueDarkBrush}" />
+                </StackPanel>
+                <TextBlock Text="Or" HorizontalAlignment="Center" Margin="0,10,0,10"/>
+                <Button Content="Sign In" Command="{x:Static materialDesign:Transitioner.MovePreviousCommand}"/>
+            </StackPanel>
+        </StackPanel>
+    </StackPanel>
+</UserControl>

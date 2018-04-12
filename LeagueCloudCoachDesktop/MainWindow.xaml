@@ -5,8 +5,24 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LeagueCloudCoachDesktop"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="LeagueCloudCoach"
+        d:DesignHeight="800"
+        d:DesignWidth="1600"
+        MinHeight="800" 
+        MinWidth="1600"
+        DataContext="{Binding Main, Source={StaticResource Locator}}">
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/ViewModelToViewDataTemplates.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
     <Grid>
-        
+        <DockPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+            <ContentPresenter Content="{Binding CurrentPage}" />
+        </DockPanel>
     </Grid>
 </Window>
