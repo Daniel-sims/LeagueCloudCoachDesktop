@@ -9,16 +9,17 @@
              mc:Ignorable="d" 
              d:DesignHeight="800"
              d:DesignWidth="1600"
-             Background="{StaticResource DefaultApplicationBackgroundWhite}">
+             Background="{StaticResource DefaultApplicationBackgroundWhiteSmoke}">
 
     <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
-        <TextBlock Text="League Cloud Coach" Style="{StaticResource MaterialDesignDisplay3TextBlock}" Foreground="{StaticResource PrimaryHueDarkBrush}"/>
-        <materialDesign:Transitioner SelectedIndex="0" AutoApplyTransitionOrigins="True" Margin="0,50,0,0">
-            <materialDesign:TransitionerSlide OpeningEffect="{materialDesign:TransitionEffect SlideInFromBottom}">
+        <TextBlock Text="League Cloud Coach" Style="{StaticResource MaterialDesignHeadlineTextBlock}" FontSize="50" FontWeight="Thin" Foreground="{StaticResource PrimaryHueDarkBrush}"/>
+        <TextBlock Text="Beta version " Style="{StaticResource MaterialDesignSubheadingTextBlock}" FontWeight="Thin"  HorizontalAlignment="Center"/>
+        <materialDesign:Transitioner SelectedIndex="0" AutoApplyTransitionOrigins="True" Margin="0,100,0,0">
+            <materialDesign:TransitionerSlide OpeningEffect="{materialDesign:TransitionEffect FadeIn}">
                 <loginView:LoginSignInView />
             </materialDesign:TransitionerSlide>
 
-            <materialDesign:TransitionerSlide OpeningEffect="{materialDesign:TransitionEffect SlideInFromBottom}">
+            <materialDesign:TransitionerSlide OpeningEffect="{materialDesign:TransitionEffect FadeIn}">
                 <loginView:LoginSignUpView />
             </materialDesign:TransitionerSlide>
         </materialDesign:Transitioner>
