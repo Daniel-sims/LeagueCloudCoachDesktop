@@ -12,12 +12,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using LeagueCloudCoachDesktop.Interfaces.Login;
 
 namespace LeagueCloudCoachDesktop.View.Login
 {
-    /// <summary>
-    /// Interaction logic for LoginSignInView.xaml
-    /// </summary>
     public partial class LoginSignInView : UserControl
     {
         public LoginSignInView()

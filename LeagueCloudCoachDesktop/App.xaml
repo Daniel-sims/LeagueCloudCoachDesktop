@@ -4,7 +4,8 @@
           <ResourceDictionary.MergedDictionaries>
               <ResourceDictionary Source="pack://application:,,,/LeagueCloudCoachDesktop;component/Styles/Palette.xaml" />
               <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
-          </ResourceDictionary.MergedDictionaries>
+              <ResourceDictionary Source="pack://application:,,,/ViewModelToViewDataTemplates.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
 
           <vm:ViewModelLocator x:Key="Locator" d:IsDataSource="True" xmlns:vm="clr-namespace:LeagueCloudCoachDesktop.ViewModel" />
       </ResourceDictionary>

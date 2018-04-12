@@ -76,6 +76,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Interfaces\Login\IHavePassword.cs" />
     <Compile Include="ViewModel\Login\LoginSignInViewModel.cs" />
     <Compile Include="ViewModel\Login\LoginSignUpViewModel.cs" />
     <Compile Include="ViewModel\Login\LoginViewModel.cs" />

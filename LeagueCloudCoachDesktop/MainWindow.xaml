@@ -12,14 +12,6 @@
         MinWidth="1600"
         DataContext="{Binding Main, Source={StaticResource Locator}}">
 
-    <Window.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="pack://application:,,,/ViewModelToViewDataTemplates.xaml"/>
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </Window.Resources>
-
     <Grid>
         <DockPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
             <ContentPresenter Content="{Binding CurrentPage}" />
