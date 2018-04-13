@@ -13,7 +13,7 @@ namespace LeagueCloudCoachDesktop.ViewModel
         private ViewModelBase _currentPage;
         public ViewModelBase CurrentPage
         {
-            get { return _currentPage; }
+            get => _currentPage; 
             set
             {
                 if (_currentPage == value) { return; }

@@ -1,17 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows.Controls;
-using System.Windows.Input;
-using GalaSoft.MvvmLight;
+﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using IdentityModel.Client;
-using LeagueCloudCoachDesktop.Interfaces.Login;
 using Newtonsoft.Json.Linq;
+using System;
+using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace LeagueCloudCoachDesktop.ViewModel.Login
 {
@@ -34,6 +27,7 @@ namespace LeagueCloudCoachDesktop.ViewModel.Login
 
         private async Task SignIn(object parameter)
         {
+            // discover endpoints from metadata
             var disco = await DiscoveryClient.GetAsync("http://localhost:5000");
             if (disco.IsError)
             {
@@ -41,6 +35,7 @@ namespace LeagueCloudCoachDesktop.ViewModel.Login
                 return;
             }
 
+            // request token
             var tokenClient = new TokenClient(disco.TokenEndpoint, "client", "secret");
             var tokenResponse = await tokenClient.RequestClientCredentialsAsync("api1");
 
@@ -50,10 +45,13 @@ namespace LeagueCloudCoachDesktop.ViewModel.Login
                 return;
             }
 
+            Console.WriteLine(tokenResponse.Json);
+
+            // call api
             var client = new HttpClient();
             client.SetBearerToken(tokenResponse.AccessToken);
 
-            var response = await client.GetAsync("http://localhost:5001/StaticData/Items");
+            var response = await client.GetAsync("http://localhost:5001/identity");
             if (!response.IsSuccessStatusCode)
             {
                 Console.WriteLine(response.StatusCode);
@@ -63,17 +61,6 @@ namespace LeagueCloudCoachDesktop.ViewModel.Login
                 var content = await response.Content.ReadAsStringAsync();
                 Console.WriteLine(JArray.Parse(content));
             }
-
-            //if (parameter is PasswordBox passwordContainer)
-            //{
-            //    var username = UserName;
-            //    var password = passwordContainer.Password;
-
-            //    //Sign in logic here
-            //}
-
-            //Send message to login successfuly if succesful login
-
         }
     }
 }
