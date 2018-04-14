@@ -35,23 +35,33 @@ namespace LeagueCloudCoachDesktop.ViewModel.Login
                 return;
             }
 
-            // request token
-            var tokenClient = new TokenClient(disco.TokenEndpoint, "client", "secret");
-            var tokenResponse = await tokenClient.RequestClientCredentialsAsync("api1");
+            //ClientCredentials grant type, no username/password
+            //var tokenClient = new TokenClient(disco.TokenEndpoint, "client", "secret");
+            //var tokenResponse = await tokenClient.RequestClientCredentialsAsync("api1");
+
+            //if (tokenResponse.IsError)
+            //{
+            //    Console.WriteLine(tokenResponse.Error);
+            //    return;
+            //}
+
+            // ResourceOwnerPassword grant type
+            var tokenClient = new TokenClient(disco.TokenEndpoint, "ro.client", "secret");
+            var tokenResponse = await tokenClient.RequestResourceOwnerPasswordAsync("alice", "password", "api1");
 
             if (tokenResponse.IsError)
             {
                 Console.WriteLine(tokenResponse.Error);
                 return;
             }
-
+           
             Console.WriteLine(tokenResponse.Json);
 
             // call api
             var client = new HttpClient();
             client.SetBearerToken(tokenResponse.AccessToken);
 
-            var response = await client.GetAsync("http://localhost:5001/identity");
+            var response = await client.GetAsync("http://localhost:5001/StaticData/Items");
             if (!response.IsSuccessStatusCode)
             {
                 Console.WriteLine(response.StatusCode);
