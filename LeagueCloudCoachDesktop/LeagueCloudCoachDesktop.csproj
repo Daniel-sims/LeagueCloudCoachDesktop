@@ -101,17 +101,10 @@
     <Compile Include="HttpRequest\Models\AccessTokenResponse.cs" />
     <Compile Include="HttpRequest\TokenBasedRequestWrapper.cs" />
     <Compile Include="Interfaces\Login\IHavePassword.cs" />
-    <Compile Include="ViewModel\Login\LoginSignInViewModel.cs" />
-    <Compile Include="ViewModel\Login\LoginSignUpViewModel.cs" />
+    <Compile Include="Utils\WebBrowserUtility.cs" />
     <Compile Include="ViewModel\Login\LoginViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
-    <Compile Include="View\Login\LoginSignInView.xaml.cs">
-      <DependentUpon>LoginSignInView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\Login\LoginSignUpView.xaml.cs">
-      <DependentUpon>LoginSignUpView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="View\Login\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
     </Compile>
@@ -132,14 +125,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ViewModelToViewDataTemplates.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\Login\LoginSignInView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\Login\LoginSignUpView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -7,12 +7,4 @@
     <DataTemplate DataType="{x:Type loginVm:LoginViewModel}">
         <loginV:LoginView />
     </DataTemplate>
-
-    <DataTemplate DataType="{x:Type loginVm:LoginSignUpViewModel}">
-        <loginV:LoginSignUpView />
-    </DataTemplate>
-
-    <DataTemplate DataType="{x:Type loginVm:LoginSignInViewModel}">
-        <loginV:LoginSignInView />
-    </DataTemplate>
 </ResourceDictionary>

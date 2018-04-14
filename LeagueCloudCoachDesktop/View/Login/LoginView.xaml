@@ -6,22 +6,13 @@
              xmlns:local="clr-namespace:LeagueCloudCoachDesktop.View.Login"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:loginView="clr-namespace:LeagueCloudCoachDesktop.View.Login"
+             xmlns:utils="clr-namespace:LeagueCloudCoachDesktop.Utils"
              mc:Ignorable="d" 
              d:DesignHeight="800"
              d:DesignWidth="1600"
              Background="{StaticResource DefaultApplicationBackgroundWhiteSmoke}">
 
-    <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
-        <TextBlock Text="League Cloud Coach" Style="{StaticResource MaterialDesignHeadlineTextBlock}" FontSize="50" FontWeight="Thin" Foreground="{StaticResource PrimaryHueDarkBrush}"/>
-        <TextBlock Text="Beta version " Style="{StaticResource MaterialDesignSubheadingTextBlock}" FontWeight="Thin"  HorizontalAlignment="Center"/>
-        <materialDesign:Transitioner SelectedIndex="0" AutoApplyTransitionOrigins="True" Margin="0,50,0,0">
-            <materialDesign:TransitionerSlide OpeningEffect="{materialDesign:TransitionEffect FadeIn}">
-                <loginView:LoginSignInView />
-            </materialDesign:TransitionerSlide>
-
-            <materialDesign:TransitionerSlide OpeningEffect="{materialDesign:TransitionEffect FadeIn}">
-                <loginView:LoginSignUpView />
-            </materialDesign:TransitionerSlide>
-        </materialDesign:Transitioner>
-    </StackPanel>
+    <Grid>
+        <WebBrowser utils:WebBrowserUtility.BindableSource="{Binding WebAddress}" Navigating="browserMovieLinks_Navigating"/>
+    </Grid>
 </UserControl>
