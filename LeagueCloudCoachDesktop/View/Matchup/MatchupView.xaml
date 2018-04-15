@@ -4,10 +4,127 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:LeagueCloudCoachDesktop.View.Matchup"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
-        <Label x:Name="label" Content="Matchup" HorizontalAlignment="Left" Margin="131,148,0,0" VerticalAlignment="Top"/>
+    <ScrollViewer VerticalScrollBarVisibility="Visible" Width="auto" Height="auto">
+        <Grid>
+            <Grid.Resources>
+                <Style TargetType="TextBox">
+                    <Setter Property="Width" Value="175"/>
+                    <Setter Property="HorizontalAlignment" Value="Right"/>
+                    <Setter Property="Margin" Value="0,15,0,0"/>
+                    <Setter Property="BorderBrush" Value="Black"/>
+                    <Setter Property="BorderThickness" Value="0,0,0,1"/>
+                    <Setter Property="Background" Value="Transparent"/>
+                </Style>
+                
+            </Grid.Resources>
 
-    </Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Row="0" Grid.Column="0" Content="My Team" FontSize="25" Margin="0,25,0,0" Padding="0" VerticalAlignment="Bottom" HorizontalAlignment="Right" FontWeight="Thin"/>
+            <Label Grid.Row="0" Grid.Column="2" Content="Enemy Team" FontSize="25" Padding="0" VerticalAlignment="Bottom" HorizontalAlignment="Left"  FontWeight="Thin"/>
+
+            <StackPanel Grid.Row="1" Grid.Column="0">
+                <ComboBox materialDesign:HintAssist.Hint="Your champion" IsEditable="True" Style="{StaticResource MaterialDesignFloatingHintComboBox}" ItemsSource="{Binding ChampionStrings}" SelectedValue="{Binding UsersChampion}" Width="175" HorizontalAlignment="Right">
+                    <ComboBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <VirtualizingStackPanel VirtualizingStackPanel.IsVirtualizing="True" VirtualizingStackPanel.VirtualizationMode="Recycling"/>
+                        </ItemsPanelTemplate>
+                    </ComboBox.ItemsPanel>
+                </ComboBox>
+                <ComboBox materialDesign:HintAssist.Hint="(optional)" IsEditable="True" Style="{StaticResource MaterialDesignFloatingHintComboBox}" ItemsSource="{Binding ChampionStrings}" SelectedValue="{Binding FriendlyTwo}" Width="175" HorizontalAlignment="Right">
+                    <ComboBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <VirtualizingStackPanel VirtualizingStackPanel.IsVirtualizing="True" VirtualizingStackPanel.VirtualizationMode="Recycling"/>
+                        </ItemsPanelTemplate>
+                    </ComboBox.ItemsPanel>
+                </ComboBox>
+                <ComboBox materialDesign:HintAssist.Hint="(optional)" IsEditable="True" Style="{StaticResource MaterialDesignFloatingHintComboBox}" ItemsSource="{Binding ChampionStrings}" SelectedValue="{Binding FriendlyThree}" Width="175" HorizontalAlignment="Right">
+                    <ComboBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <VirtualizingStackPanel VirtualizingStackPanel.IsVirtualizing="True" VirtualizingStackPanel.VirtualizationMode="Recycling"/>
+                        </ItemsPanelTemplate>
+                    </ComboBox.ItemsPanel>
+                </ComboBox>
+                <ComboBox materialDesign:HintAssist.Hint="(optional)" IsEditable="True" Style="{StaticResource MaterialDesignFloatingHintComboBox}" ItemsSource="{Binding ChampionStrings}" SelectedValue="{Binding FriendlyFour}" Width="175" HorizontalAlignment="Right">
+                    <ComboBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <VirtualizingStackPanel VirtualizingStackPanel.IsVirtualizing="True" VirtualizingStackPanel.VirtualizationMode="Recycling"/>
+                        </ItemsPanelTemplate>
+                    </ComboBox.ItemsPanel>
+                </ComboBox>
+                <ComboBox materialDesign:HintAssist.Hint="(optional)" IsEditable="True" Style="{StaticResource MaterialDesignFloatingHintComboBox}" ItemsSource="{Binding ChampionStrings}" SelectedValue="{Binding FriendlyFive}" Width="175" HorizontalAlignment="Right">
+                    <ComboBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <VirtualizingStackPanel VirtualizingStackPanel.IsVirtualizing="True" VirtualizingStackPanel.VirtualizationMode="Recycling"/>
+                        </ItemsPanelTemplate>
+                    </ComboBox.ItemsPanel>
+                </ComboBox>
+            </StackPanel>
+
+            <StackPanel Grid.Row="1" Grid.Column="2" HorizontalAlignment="Left">
+                <ComboBox materialDesign:HintAssist.Hint="(optional)" IsEditable="True" Style="{StaticResource MaterialDesignFloatingHintComboBox}" ItemsSource="{Binding ChampionStrings}" SelectedValue="{Binding EnemyOne}" Width="175" HorizontalAlignment="Right">
+                    <ComboBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <VirtualizingStackPanel VirtualizingStackPanel.IsVirtualizing="True" VirtualizingStackPanel.VirtualizationMode="Recycling"/>
+                        </ItemsPanelTemplate>
+                    </ComboBox.ItemsPanel>
+                </ComboBox>
+                <ComboBox materialDesign:HintAssist.Hint="(optional)" IsEditable="True" Style="{StaticResource MaterialDesignFloatingHintComboBox}" ItemsSource="{Binding ChampionStrings}" SelectedValue="{Binding EnemyTwo}" Width="175" HorizontalAlignment="Right">
+                    <ComboBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <VirtualizingStackPanel VirtualizingStackPanel.IsVirtualizing="True" VirtualizingStackPanel.VirtualizationMode="Recycling"/>
+                        </ItemsPanelTemplate>
+                    </ComboBox.ItemsPanel>
+                </ComboBox>
+                <ComboBox materialDesign:HintAssist.Hint="(optional)" IsEditable="True" Style="{StaticResource MaterialDesignFloatingHintComboBox}" ItemsSource="{Binding ChampionStrings}" SelectedValue="{Binding EnemyThree}" Width="175" HorizontalAlignment="Right">
+                    <ComboBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <VirtualizingStackPanel VirtualizingStackPanel.IsVirtualizing="True" VirtualizingStackPanel.VirtualizationMode="Recycling"/>
+                        </ItemsPanelTemplate>
+                    </ComboBox.ItemsPanel>
+                </ComboBox>
+                <ComboBox materialDesign:HintAssist.Hint="(optional)" IsEditable="True" Style="{StaticResource MaterialDesignFloatingHintComboBox}" ItemsSource="{Binding ChampionStrings}" SelectedValue="{Binding EnemyFour}" Width="175" HorizontalAlignment="Right">
+                    <ComboBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <VirtualizingStackPanel VirtualizingStackPanel.IsVirtualizing="True" VirtualizingStackPanel.VirtualizationMode="Recycling"/>
+                        </ItemsPanelTemplate>
+                    </ComboBox.ItemsPanel>
+                </ComboBox>
+                <ComboBox materialDesign:HintAssist.Hint="(optional)" IsEditable="True" Style="{StaticResource MaterialDesignFloatingHintComboBox}" ItemsSource="{Binding ChampionStrings}" SelectedValue="{Binding EnemyFive}" Width="175" HorizontalAlignment="Right">
+                    <ComboBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <VirtualizingStackPanel VirtualizingStackPanel.IsVirtualizing="True" VirtualizingStackPanel.VirtualizationMode="Recycling"/>
+                        </ItemsPanelTemplate>
+                    </ComboBox.ItemsPanel>
+                </ComboBox>
+            </StackPanel>
+
+            <StackPanel Orientation="Vertical" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Margin="0,25,0,0">
+                <TextBlock Text="Number of matches to fetch" HorizontalAlignment="Center"/>
+                <TextBox HorizontalAlignment="Center" Text="{Binding NumberOfMatches}" TextAlignment="Center" Width="50" Margin="0,10,0,0"/>
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,25,0,0">
+                    <Button Content="Search" Width="127" Height="27" Margin="0,0,25,0" Command="{Binding OnSearchCommand}" IsEnabled="{Binding SearchButtonEnabled}"/>
+                    <Button Content="Reset" Width="127" Height="27" Command="{Binding ResetCommand}" IsEnabled="{Binding SearchButtonEnabled}"/>
+                </StackPanel>
+            </StackPanel>
+
+            <Separator Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" Background="{StaticResource SeperatorGrey}" VerticalAlignment="Bottom" Margin="50,30,50,10"/>
+        </Grid>
+    </ScrollViewer>
 </UserControl>
