@@ -32,7 +32,7 @@
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="Don't have an account? " HorizontalAlignment="Center" Margin="0,10,0,10" VerticalAlignment="Center"/>
                             <TextBlock VerticalAlignment="Center">
-                                <Hyperlink Command="{x:Static materialDesign:Transitioner.MoveNextCommand}">
+                                <Hyperlink Command="{Binding RegisterCommand}">
                                     Sign up
                                 </Hyperlink>
                             </TextBlock>

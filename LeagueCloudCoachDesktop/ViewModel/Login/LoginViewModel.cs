@@ -24,9 +24,14 @@ namespace LeagueCloudCoachDesktop.ViewModel.Login
         }
 
         private RelayCommand<object> _signInCommand;
-        public RelayCommand<object> SignInCommand
+        public RelayCommand<object> SignInCommand => _signInCommand ?? (_signInCommand = new RelayCommand<object>(async (param) => { await SignIn(param); }));
+
+        private RelayCommand _registerCommand;
+        public RelayCommand RegisterCommand => _registerCommand ?? (_registerCommand = new RelayCommand(LauncRegisterBrowser));
+
+        private void LauncRegisterBrowser()
         {
-            get { return _signInCommand ?? (_signInCommand = new RelayCommand<object>(async (param) => { await SignIn(param); })); }
+            System.Diagnostics.Process.Start("https://localhost:44300/Account/Register");
         }
 
         private async Task SignIn(object parameter)
@@ -52,9 +57,7 @@ namespace LeagueCloudCoachDesktop.ViewModel.Login
                 {
                     MessengerInstance.Send(new ChangeMainPageMessage(new MainApplicationViewModel()));
                 }
-
-                //Console.WriteLine(tokenResponse.Json);
-
+                
                 //// call api
                 //var client = new HttpClient();
                 //client.SetBearerToken(tokenResponse.AccessToken);
