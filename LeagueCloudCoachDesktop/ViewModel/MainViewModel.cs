@@ -1,4 +1,5 @@
 using GalaSoft.MvvmLight;
+using LeagueCloudCoachDesktop.Constants.MessageTypes;
 using LeagueCloudCoachDesktop.ViewModel.Login;
 
 namespace LeagueCloudCoachDesktop.ViewModel
@@ -8,6 +9,8 @@ namespace LeagueCloudCoachDesktop.ViewModel
         public MainViewModel()
         {
             CurrentPage = new LoginViewModel();
+
+            MessengerInstance.Register<ChangeMainPageMessage>(this, (m) => { CurrentPage = m.NewPage; });
         }
 
         private ViewModelBase _currentPage;

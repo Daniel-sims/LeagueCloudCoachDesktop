@@ -4,9 +4,12 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using IdentityModel.Client;
+using LeagueCloudCoachDesktop.Constants.MessageTypes;
+using LeagueCloudCoachDesktop.ViewModel.Application;
 using Newtonsoft.Json.Linq;
 
 namespace LeagueCloudCoachDesktop.ViewModel.Login
@@ -28,49 +31,44 @@ namespace LeagueCloudCoachDesktop.ViewModel.Login
 
         private async Task SignIn(object parameter)
         {
-            // discover endpoints from metadata
-            var disco = await DiscoveryClient.GetAsync("http://localhost:5000");
-            if (disco.IsError)
+            if (parameter is PasswordBox p && (UserName != null || UserName != ""))
             {
-                Console.WriteLine(disco.Error);
-                return;
-            }
+                var disco = await DiscoveryClient.GetAsync("http://localhost:5000");
+                if (disco.IsError)
+                {
+                    Console.WriteLine(disco.Error);
+                    return;
+                }
 
-            //ClientCredentials grant type, no username/password
-            //var tokenClient = new TokenClient(disco.TokenEndpoint, "client", "secret");
-            //var tokenResponse = await tokenClient.RequestClientCredentialsAsync("api1");
+                // ResourceOwnerPassword grant type
+                var tokenClient = new TokenClient(disco.TokenEndpoint, "ro.LccDesktopApplication", "5CD49741-DD56-4B26-8D03-9CF4AAAF9596");
+                var tokenResponse = await tokenClient.RequestResourceOwnerPasswordAsync(UserName, p.Password, "LccApi");
 
-            //if (tokenResponse.IsError)
-            //{
-            //    Console.WriteLine(tokenResponse.Error);
-            //    return;
-            //}
+                if (tokenResponse.IsError)
+                {
+                    Console.WriteLine(tokenResponse.Error);
+                }
+                else
+                {
+                    MessengerInstance.Send(new ChangeMainPageMessage(new MainApplicationViewModel()));
+                }
 
-            // ResourceOwnerPassword grant type
-            var tokenClient = new TokenClient(disco.TokenEndpoint, "ro.client", "secret");
-            var tokenResponse = await tokenClient.RequestResourceOwnerPasswordAsync("alice", "password", "api1");
+                //Console.WriteLine(tokenResponse.Json);
 
-            if (tokenResponse.IsError)
-            {
-                Console.WriteLine(tokenResponse.Error);
-                return;
-            }
+                //// call api
+                //var client = new HttpClient();
+                //client.SetBearerToken(tokenResponse.AccessToken);
 
-            Console.WriteLine(tokenResponse.Json);
-
-            // call api
-            var client = new HttpClient();
-            client.SetBearerToken(tokenResponse.AccessToken);
-
-            var response = await client.GetAsync("http://localhost:5001/StaticData/Items");
-            if (!response.IsSuccessStatusCode)
-            {
-                Console.WriteLine(response.StatusCode);
-            }
-            else
-            {
-                var content = await response.Content.ReadAsStringAsync();
-                Console.WriteLine(JArray.Parse(content));
+                //var response = await client.GetAsync("http://localhost:5001/StaticData/Items");
+                //if (!response.IsSuccessStatusCode)
+                //{
+                //    Console.WriteLine(response.StatusCode);
+                //}
+                //else
+                //{
+                //    var content = await response.Content.ReadAsStringAsync();
+                //    Console.WriteLine(JArray.Parse(content));
+                //}
             }
         }
     }

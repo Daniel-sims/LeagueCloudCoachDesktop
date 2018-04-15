@@ -2,9 +2,16 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:LeagueCloudCoachDesktop"
                     xmlns:loginVm="clr-namespace:LeagueCloudCoachDesktop.ViewModel.Login"
-                    xmlns:loginV="clr-namespace:LeagueCloudCoachDesktop.View.Login">
+                    xmlns:loginV="clr-namespace:LeagueCloudCoachDesktop.View.Login"
+                    xmlns:applicationVm="clr-namespace:LeagueCloudCoachDesktop.ViewModel.Application"
+                    xmlns:applicationV="clr-namespace:LeagueCloudCoachDesktop.View.Application">
 
     <DataTemplate DataType="{x:Type loginVm:LoginViewModel}">
         <loginV:LoginView />
     </DataTemplate>
+
+    <DataTemplate DataType="{x:Type applicationVm:MainApplicationViewModel}">
+        <applicationV:MainApplicationView />
+    </DataTemplate>
+
 </ResourceDictionary>
