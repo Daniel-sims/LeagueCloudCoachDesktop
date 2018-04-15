@@ -15,7 +15,7 @@
     <!-- accent -->
     <SolidColorBrush x:Key="SecondaryAccentBrush" Color="#4CAF50"/>
     <SolidColorBrush x:Key="SecondaryAccentForegroundBrush" Color="#FFFFFF"/>
-
+    
     <!-- Custom colors -->
     <SolidColorBrush x:Key="DefaultApplicationBackgroundWhiteSmoke" Color="#f5f5f5"/>
     <SolidColorBrush x:Key="White" Color="White"/>

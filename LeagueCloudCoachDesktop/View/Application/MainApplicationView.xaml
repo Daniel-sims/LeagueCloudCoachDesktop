@@ -5,11 +5,38 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:LeagueCloudCoachDesktop.View.Application"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:dragablz="http://dragablz.net/winfx/xaml/dragablz"
              mc:Ignorable="d" 
              d:DesignHeight="800"
              d:DesignWidth="1600"
              Background="{StaticResource DefaultApplicationBackgroundWhiteSmoke}">
+    
+    
+    <UserControl.Resources>
+        <Style TargetType="{x:Type dragablz:TabablzControl}" BasedOn="{StaticResource MaterialDesignTabablzControlStyle}" />
+    </UserControl.Resources>
+
     <Grid>
-        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"> MEMES YOU'VE LOGGED IN</TextBlock>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        
+       
+        <DockPanel Grid.Row="0" Grid.ColumnSpan="2" Background="{StaticResource PrimaryHueMidBrush}">
+            <TextBlock Text="League Cloud Coach" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20,0,0,0" Style="{StaticResource MaterialDesignDisplay2TextBlock}" FontWeight="Thin" Foreground="{StaticResource PrimaryHueLightForegroundBrush}"/>
+        </DockPanel>
+
+        <dragablz:TabablzControl Grid.Row="1">
+            <dragablz:TabablzControl.InterTabController>
+                <dragablz:InterTabController />
+            </dragablz:TabablzControl.InterTabController>
+            <TabItem Header="Home">
+                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">Hello World</TextBlock>
+            </TabItem>
+            <TabItem Header="Matchup">
+                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">Material Design</TextBlock>
+            </TabItem>
+        </dragablz:TabablzControl>
     </Grid>
 </UserControl>
