@@ -100,11 +100,18 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Constants\MessageTypes\ChangeMainPageMessage.cs" />
+    <Compile Include="Controller\Interfaces\IStaticDataController.cs" />
+    <Compile Include="Controller\StaticDataController.cs" />
     <Compile Include="HttpRequest\HttpRequestWrapper.cs" />
     <Compile Include="HttpRequest\IHttpRequestWrapper.cs" />
+    <Compile Include="HttpRequest\ITokenBasedRequestWrapper.cs" />
     <Compile Include="HttpRequest\Models\AccessTokenResponse.cs" />
     <Compile Include="HttpRequest\TokenBasedRequestWrapper.cs" />
     <Compile Include="Interfaces\Login\IHavePassword.cs" />
+    <Compile Include="Models\StaticData\Champion.cs" />
+    <Compile Include="Models\StaticData\Item.cs" />
+    <Compile Include="Models\StaticData\Rune.cs" />
+    <Compile Include="Models\StaticData\SummonerSpell.cs" />
     <Compile Include="ViewModel\Application\MainApplicationViewModel.cs" />
     <Compile Include="ViewModel\Home\HomeViewModel.cs" />
     <Compile Include="ViewModel\Login\LoginViewModel.cs" />

@@ -9,6 +9,6 @@ namespace LeagueCloudCoachDesktop.HttpRequest
 {
     public interface IHttpRequestWrapper
     {
-        Task<T> SendRequestAsync<T>(HttpRequestMessage request);
+        Task<T> SendRequestAsync<T>(string requestUri);
     }
 }

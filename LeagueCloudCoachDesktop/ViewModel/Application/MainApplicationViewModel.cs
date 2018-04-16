@@ -9,5 +9,6 @@ namespace LeagueCloudCoachDesktop.ViewModel.Application
 {
     public class MainApplicationViewModel : ViewModelBase
     {
+        public MainApplicationViewModel() { }
     }
 }

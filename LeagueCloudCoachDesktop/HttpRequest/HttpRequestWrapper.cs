@@ -12,35 +12,57 @@ namespace LeagueCloudCoachDesktop.HttpRequest
     public class HttpRequestWrapper : IHttpRequestWrapper
     {
         private readonly HttpClient _httpClient;
+        private readonly ITokenBasedRequestWrapper _tokenBasedRequestWrapper;
 
-        public HttpRequestWrapper()
+        public HttpRequestWrapper(ITokenBasedRequestWrapper tokenBasedRequestWrapper)
         {
             _httpClient = new HttpClient
             {
-                BaseAddress = new Uri("http://localhost:54547")
+                BaseAddress = new Uri("http://localhost:5001")
             };
+
+            _tokenBasedRequestWrapper = tokenBasedRequestWrapper;
 
             _httpClient.DefaultRequestHeaders.Accept.Clear();
             _httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
-        public async Task<T> SendRequestAsync<T>(HttpRequestMessage request)
+        public async Task<T> SendRequestAsync<T>(string requestUri)
         {
-            var response = await _httpClient.SendAsync(request);
+            HttpResponseMessage response;
+
+            try
+            {
+                _httpClient.SetBearerToken(await _tokenBasedRequestWrapper.GetAccessToken());
+                response = await _httpClient.GetAsync(requestUri);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
 
             return await HandleResponse<T>(response);
         }
 
         private async Task<T> HandleResponse<T>(HttpResponseMessage httpResponse)
         {
-            var responseString = await httpResponse.Content.ReadAsStringAsync();
-
-            if (!string.IsNullOrEmpty(responseString))
+            try
             {
-                return JsonConvert.DeserializeObject<T>(responseString);
-            }
+                var responseString = await httpResponse.Content.ReadAsStringAsync();
 
-            throw new Exception("The server didn't return anything!");
+                if (!string.IsNullOrEmpty(responseString))
+                {
+                    return JsonConvert.DeserializeObject<T>(responseString);
+                }
+
+                throw new Exception("The server didn't return anything!");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
         }
     }
 }
