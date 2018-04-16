@@ -9,8 +9,9 @@ namespace LeagueCloudCoachDesktop.Controller.Interfaces
 {
     public interface IStaticDataController
     {
-        Task<List<Champion>> GetChampionData();
-        //Task<List<Item>> GetItemData();
-        //Task<List<SummonerSpell>> GetSummonerSpellData();
+        Task<IEnumerable<Champion>> GetChampionData();
+        Task<IEnumerable<Item>> GetItemData();
+        Task<IEnumerable<SummonerSpell>> GetSummonerSpellData();
+        Task<IEnumerable<Rune>> GetRuneData();
     }
 }

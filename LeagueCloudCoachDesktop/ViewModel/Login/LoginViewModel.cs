@@ -1,17 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Controls;
-using GalaSoft.MvvmLight;
+﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using IdentityModel.Client;
 using LeagueCloudCoachDesktop.Constants.MessageTypes;
 using LeagueCloudCoachDesktop.HttpRequest;
 using LeagueCloudCoachDesktop.ViewModel.Application;
-using Newtonsoft.Json.Linq;
+using System;
+using System.Threading.Tasks;
+using System.Windows.Controls;
 
 namespace LeagueCloudCoachDesktop.ViewModel.Login
 {
@@ -45,8 +40,7 @@ namespace LeagueCloudCoachDesktop.ViewModel.Login
                     Console.WriteLine(disco.Error);
                     return;
                 }
-
-                // ResourceOwnerPassword grant type
+                
                 var tokenClient = new TokenClient(disco.TokenEndpoint, "ro.LccDesktopApplication", "5CD49741-DD56-4B26-8D03-9CF4AAAF9596");
                 var tokenResponse = await tokenClient.RequestResourceOwnerPasswordAsync(UserName, p.Password, "LccApi offline_access");
 
@@ -57,28 +51,12 @@ namespace LeagueCloudCoachDesktop.ViewModel.Login
                 else
                 {
                     var tokenBasedWrapper = new TokenBasedRequestWrapper();
-                    tokenBasedWrapper.SetAccessToken(tokenResponse?.AccessToken);
-                    tokenBasedWrapper.SetRefreshToken(tokenResponse?.RefreshToken);
+                    tokenBasedWrapper.SetAccessToken(tokenResponse.AccessToken);
+                    tokenBasedWrapper.SetRefreshToken(tokenResponse.RefreshToken);
                     tokenBasedWrapper.SetExpirationTime(tokenResponse.ExpiresIn);
 
                     MessengerInstance.Send(new ChangeMainPageMessage(new MainApplicationViewModel()));
                 }
-
-                // call api
-                //var tokenBasedWrapper2 = new TokenBasedRequestWrapper();
-                //var client = new HttpClient();
-                //client.SetBearerToken(await tokenBasedWrapper2.GetAccessToken());
-
-                //var response = await client.GetAsync("http://localhost:5001/StaticData/Items");
-                //if (!response.IsSuccessStatusCode)
-                //{
-                //    Console.WriteLine(response.StatusCode);
-                //}
-                //else
-                //{
-                //    var content = await response.Content.ReadAsStringAsync();
-                //    Console.WriteLine(JArray.Parse(content));
-                //}
             }
         }
     }

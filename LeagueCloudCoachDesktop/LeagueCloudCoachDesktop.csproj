@@ -112,6 +112,8 @@
     <Compile Include="Models\StaticData\Item.cs" />
     <Compile Include="Models\StaticData\Rune.cs" />
     <Compile Include="Models\StaticData\SummonerSpell.cs" />
+    <Compile Include="Providers\IStaticDataProvider.cs" />
+    <Compile Include="Providers\StaticDataProvider.cs" />
     <Compile Include="ViewModel\Application\MainApplicationViewModel.cs" />
     <Compile Include="ViewModel\Home\HomeViewModel.cs" />
     <Compile Include="ViewModel\Login\LoginViewModel.cs" />

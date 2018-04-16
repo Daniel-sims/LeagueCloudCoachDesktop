@@ -1,5 +1,6 @@
 using CommonServiceLocator;
 using GalaSoft.MvvmLight.Ioc;
+using LeagueCloudCoachDesktop.Providers;
 using LeagueCloudCoachDesktop.ViewModel.Application;
 using LeagueCloudCoachDesktop.ViewModel.Home;
 using LeagueCloudCoachDesktop.ViewModel.Login;

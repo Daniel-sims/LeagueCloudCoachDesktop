@@ -1,19 +1,15 @@
-﻿using System;
+﻿using GalaSoft.MvvmLight;
+using LeagueCloudCoachDesktop.Models.StaticData;
+using LeagueCloudCoachDesktop.Providers;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using GalaSoft.MvvmLight;
-using LeagueCloudCoachDesktop.Controller;
-using LeagueCloudCoachDesktop.Controller.Interfaces;
-using LeagueCloudCoachDesktop.Models.StaticData;
 
 namespace LeagueCloudCoachDesktop.ViewModel.Matchup
 {
     public class MatchupViewModel : ViewModelBase
     {
-        private IStaticDataController StaticDataController { get; } = new StaticDataController();
+        //TODO This needs to come in through DI/CI for testability
+        private IStaticDataProvider StaticDataProvider { get; }= new StaticDataProvider();
 
         public MatchupViewModel()
         {
@@ -27,7 +23,7 @@ namespace LeagueCloudCoachDesktop.ViewModel.Matchup
 
         private async void SetChampions()
         {
-            ChampionsStaticData = await StaticDataController.GetChampionData();
+            ChampionsStaticData = await StaticDataProvider.GetChampionsStatic();
             SetChampionStrings();
         }
 
@@ -39,7 +35,7 @@ namespace LeagueCloudCoachDesktop.ViewModel.Matchup
             }
         }
 
-        private IList<Champion> ChampionsStaticData { get; set; }
+        private IEnumerable<Champion> ChampionsStaticData { get; set; }
 
         private ObservableCollection<string> _championStrings = new ObservableCollection<string>();
         public ObservableCollection<string> ChampionStrings
