@@ -27,9 +27,8 @@ namespace LeagueCloudCoachDesktop.HttpRequest
             {
                 var discoveryClient = await DiscoveryClient.GetAsync("http://localhost:5000");
                 if (discoveryClient.IsError)
-                {
                     throw new Exception("Error in discovery client - " + discoveryClient.Error);
-                }
+                
 
                 using (var tokenClient = new TokenClient(discoveryClient.TokenEndpoint, "ro.LccDesktopApplication", "5CD49741-DD56-4B26-8D03-9CF4AAAF9596"))
                 {
