@@ -41,6 +41,7 @@ namespace LeagueCloudCoachDesktop.ViewModel.Login
                     return;
                 }
                 
+                //TODO Move the parameters in here to a secure location
                 var tokenClient = new TokenClient(disco.TokenEndpoint, "ro.LccDesktopApplication", "5CD49741-DD56-4B26-8D03-9CF4AAAF9596");
                 var tokenResponse = await tokenClient.RequestResourceOwnerPasswordAsync(UserName, p.Password, "LccApi offline_access");
 
