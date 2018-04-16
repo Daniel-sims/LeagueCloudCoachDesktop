@@ -128,11 +128,15 @@
     <Compile Include="View\Application\MainApplicationView.xaml.cs">
       <DependentUpon>MainApplicationView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Converter\MatchupBoolToColourConverter.cs" />
     <Compile Include="View\Home\HomeView.xaml.cs">
       <DependentUpon>HomeView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Login\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Matchup\MatchupInformationView.xaml.cs">
+      <DependentUpon>MatchupInformationView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Matchup\MatchupView.xaml.cs">
       <DependentUpon>MatchupView.xaml</DependentUpon>
@@ -166,6 +170,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Login\LoginView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Matchup\MatchupInformationView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

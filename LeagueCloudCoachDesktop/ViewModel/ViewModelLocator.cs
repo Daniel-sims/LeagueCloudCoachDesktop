@@ -25,6 +25,7 @@ namespace LeagueCloudCoachDesktop.ViewModel
             // Tabs 
             SimpleIoc.Default.Register<HomeViewModel>();
             SimpleIoc.Default.Register<MatchupViewModel>();
+            SimpleIoc.Default.Register<MatchupInformationViewModel>();
         }
 
         public MainViewModel Main { get { return ServiceLocator.Current.GetInstance<MainViewModel>(); } }
@@ -36,6 +37,8 @@ namespace LeagueCloudCoachDesktop.ViewModel
         public HomeViewModel Home { get { return ServiceLocator.Current.GetInstance<HomeViewModel>(); } }
 
         public MatchupViewModel Matchup { get { return ServiceLocator.Current.GetInstance<MatchupViewModel>(); } }
+
+        public MatchupInformationViewModel MatchupInformation { get { return ServiceLocator.Current.GetInstance<MatchupInformationViewModel>(); } }
 
         public static void Cleanup() { }
     }

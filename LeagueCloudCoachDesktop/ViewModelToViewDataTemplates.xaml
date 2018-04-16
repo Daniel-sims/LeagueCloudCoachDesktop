@@ -26,4 +26,8 @@
         <MatchupV:MatchupView />
     </DataTemplate>
 
+    <DataTemplate DataType="{x:Type MatchupVm:MatchupInformationViewModel}">
+        <MatchupV:MatchupInformationView />
+    </DataTemplate>
+
 </ResourceDictionary>

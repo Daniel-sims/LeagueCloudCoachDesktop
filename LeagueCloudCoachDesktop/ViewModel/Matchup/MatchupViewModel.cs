@@ -110,7 +110,7 @@ namespace LeagueCloudCoachDesktop.ViewModel.Matchup
                 return null;
             }
 
-            if (Convert.ToInt32(NumberOfMatches) > 5)
+            if (Convert.ToInt32(NumberOfMatches) > 50)
             {
                 MessageBox.Show("For testing purposes request no more than 5 matches at a time, due to limits with the API key.", "Please....", MessageBoxButton.OK, MessageBoxImage.Information);
                 return null;
@@ -127,7 +127,8 @@ namespace LeagueCloudCoachDesktop.ViewModel.Matchup
                 {
                     var newMatchupInformation = new MatchupInformationViewModel()
                     {
-                        Matchup = matchup
+                        Matchup = matchup,
+                        UsersChampionId = Convert.ToInt32(ChampionsStaticData.FirstOrDefault(x => x.ChampionName == UsersChampion)?.ChampionId)
                     };
 
                     matchupsCache.Add(newMatchupInformation);
