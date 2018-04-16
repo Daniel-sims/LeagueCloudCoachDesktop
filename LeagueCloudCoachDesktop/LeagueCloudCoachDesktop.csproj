@@ -100,13 +100,18 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Constants\MessageTypes\ChangeMainPageMessage.cs" />
+    <Compile Include="Controller\Interfaces\IMatchController.cs" />
     <Compile Include="Controller\Interfaces\IStaticDataController.cs" />
+    <Compile Include="Controller\MatchController.cs" />
     <Compile Include="Controller\StaticDataController.cs" />
     <Compile Include="HttpRequest\HttpRequestWrapper.cs" />
     <Compile Include="HttpRequest\IHttpRequestWrapper.cs" />
     <Compile Include="HttpRequest\ITokenBasedRequestWrapper.cs" />
     <Compile Include="HttpRequest\Models\AccessTokenResponse.cs" />
     <Compile Include="HttpRequest\TokenBasedRequestWrapper.cs" />
+    <Compile Include="Models\MatchData\Match.cs" />
+    <Compile Include="Models\MatchData\MatchPlayer.cs" />
+    <Compile Include="Models\MatchData\MatchTeam.cs" />
     <Compile Include="Models\StaticData\Champion.cs" />
     <Compile Include="Models\StaticData\Item.cs" />
     <Compile Include="Models\StaticData\Rune.cs" />
@@ -117,6 +122,7 @@
     <Compile Include="ViewModel\Home\HomeViewModel.cs" />
     <Compile Include="ViewModel\Login\LoginViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\Matchup\MatchupInformationViewModel.cs" />
     <Compile Include="ViewModel\Matchup\MatchupViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="View\Application\MainApplicationView.xaml.cs">
