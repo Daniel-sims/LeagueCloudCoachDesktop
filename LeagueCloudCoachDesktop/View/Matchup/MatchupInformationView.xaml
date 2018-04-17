@@ -13,15 +13,246 @@
     </UserControl.Resources>
 
     <Grid>
-        <Expander Background="{Binding UsersTeamWin, Converter={StaticResource BoolToColourConverter}}">
+        <Expander Background="{StaticResource PrimaryHueLightBrush}">
             <Expander.Resources>
                 <Style TargetType="{x:Type TextBlock}">
                     <Setter Property="Foreground" Value="{StaticResource PrimaryHueDarkBrush}"/>
                 </Style>
             </Expander.Resources>
             <Expander.Header>
-                <BulletDecorator Height="50"/>
+                <BulletDecorator Height="auto">
+                    <BulletDecorator.Bullet>
+                        <StackPanel Orientation="Horizontal">
+                            <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
+                                <Rectangle Width="10" Fill="{Binding UsersTeamWin, Converter={StaticResource BoolToColourConverter}}" HorizontalAlignment="Left"/>
+                                <StackPanel Orientation="Vertical">
+                                    <Image Source="{Binding UsersChampionIconPath}" HorizontalAlignment="Left" Height="50" Width="50" />
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Source="{Binding UsersSummonerOneIconPath}" HorizontalAlignment="Left" Height="25" Width="25" />
+                                        <Image Source="{Binding UsersSummonerTwoIconPath}" HorizontalAlignment="Left" Height="25" Width="25" />
+                                    </StackPanel>
+                                </StackPanel>
+                                <StackPanel Orientation="Vertical" VerticalAlignment="Center" Margin="10,0,0,0">
+                                    <Image Source="{Binding UsersPrimaryRuneStyleIconPath}" HorizontalAlignment="Left" Height="25" Width="25" />
+                                    <Image Source="{Binding UsersSecondaryRuneStyleIconPath}" HorizontalAlignment="Left" Height="25" Width="25" />
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal" Margin="15,0,0,0" Width="100">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition/>
+                                            <RowDefinition/>
+                                            <RowDefinition/>
+                                            <RowDefinition/>
+                                        </Grid.RowDefinitions>
+
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <!-- Summoner name + Rank-->
+                                        <StackPanel Grid.Row="0" Grid.ColumnSpan="2" Margin="0,0,0,5">
+                                            <TextBlock Text="{Binding UserMatchPlayer.SummonerName}" Style="{StaticResource MaterialDesignTitleTextBlock}" FontSize="15"/>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock DataContext="{Binding UserMatchPlayer}" Style="{StaticResource MaterialDesignBody1TextBlock}" FontSize="10">
+                                                    <TextBlock.Text>
+                                                        <MultiBinding StringFormat="{}{0} {1} {2}lp">
+                                                            <Binding Path="RankedSoloTier"/>
+                                                            <Binding Path="RankedSoloDivision"/>
+                                                            <Binding Path="RankedSoloLeaguePoints"/>
+                                                        </MultiBinding>
+                                                    </TextBlock.Text>
+                                                </TextBlock>
+                                            </StackPanel>
+                                        </StackPanel>
+
+                                        <!--Game Duration-->
+                                        <TextBlock Grid.Row="1" Grid.Column="0" Text="Duration" Style="{StaticResource MaterialDesignBody2TextBlock}" FontSize="10"/>
+                                        <TextBlock Grid.Row="1" Grid.Column="1" Margin="10,0,0,0" Style="{StaticResource MaterialDesignBody1TextBlock}" Text="{Binding Matchup.GameDuration}" FontSize="10"/>
+
+                                        <!--K/D/A-->
+                                        <TextBlock Grid.Row="2" Grid.Column="0" Text="K/D/A" Style="{StaticResource MaterialDesignBody2TextBlock}" FontSize="10"/>
+                                        <TextBlock Grid.Row="2" Grid.Column="1" DataContext="{Binding UserMatchPlayer}" Margin="10,0,0,0" Style="{StaticResource MaterialDesignBody1TextBlock}" FontSize="10">
+                                            <TextBlock.Text>
+                                                <MultiBinding StringFormat="{}{0}/{1}/{2}">
+                                                    <Binding Path="Kills"/>
+                                                    <Binding Path="Deaths"/>
+                                                    <Binding Path="Assists"/>
+                                                </MultiBinding>
+                                            </TextBlock.Text>
+                                        </TextBlock>
+
+                                        <!--CS-->
+                                        <TextBlock Grid.Row="3" Grid.Column="0" Text="Minions" Style="{StaticResource MaterialDesignBody2TextBlock}" FontSize="10"/>
+                                        <TextBlock Grid.Row="3" Grid.Column="1" Margin="10,0,0,0" Style="{StaticResource MaterialDesignBody1TextBlock}" Text="{Binding UserMatchPlayer.NeutralMinionsKilled}" FontSize="10"/>
+                                    </Grid>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal" Margin="25,0,0,0">
+                                    <StackPanel Orientation="Vertical">
+                                        <StackPanel Orientation="Horizontal">
+                                            <Image Source="{Binding ItemOneIconPath}" HorizontalAlignment="Center" Height="30" Width="30" Margin="0,5,2,0"/>
+                                            <Image Source="{Binding ItemTwoIconPath}" HorizontalAlignment="Center" Height="30" Width="30" Margin="0,5,2,0"/>
+                                            <Image Source="{Binding ItemThreeIconPath}" HorizontalAlignment="Center" Height="30" Width="30" Margin="0,5,2,0"/>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Image Source="{Binding ItemFourIconPath}" HorizontalAlignment="Center" Height="30" Width="30" Margin="2,5,0,0"/>
+                                            <Image Source="{Binding ItemFiveIconPath}" HorizontalAlignment="Center" Height="30" Width="30" Margin="2,5,0,0"/>
+                                            <Image Source="{Binding ItemSixIconPath}" HorizontalAlignment="Center" Height="30" Width="30" Margin="2,5,0,0"/>
+                                        </StackPanel>
+                                    </StackPanel>
+                                    <Image Source="{Binding TrinketIconPath}" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30" Width="30" Margin="2,0,0,0"/>
+                                </StackPanel>
+
+                                <!-- Overall champion icons panel-->
+                                <StackPanel Orientation="Horizontal" Margin="25,0,0,0">
+                                    <!--Friendly team champion icons-->
+                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                        <StackPanel.Resources>
+                                            <Style TargetType="Image">
+                                                <Setter Property="Height" Value="30"/>
+                                                <Setter Property="Width" Value="30"/>
+                                                <Setter Property="HorizontalAlignment" Value="Left"/>
+                                            </Style>
+                                        </StackPanel.Resources>
+                                        <Image Source="{Binding FriendlyPlayerOne.ChampionIconPath}"/>
+                                        <Image Source="{Binding FriendlyPlayerTwo.ChampionIconPath}" Margin="5,0,0,0" />
+                                        <Image Source="{Binding FriendlyPlayerThree.ChampionIconPath}" Margin="5,0,0,0" />
+                                        <Image Source="{Binding FriendlyPlayerFour.ChampionIconPath}" Margin="5,0,0,0" />
+                                        <Image Source="{Binding FriendlyPlayerFive.ChampionIconPath}" Margin="5,0,0,0" />
+                                    </StackPanel>
+
+                                    <!--Enemy team champion icons-->
+                                    <StackPanel Orientation="Horizontal" Margin="25,0,0,0" VerticalAlignment="Center">
+                                        <StackPanel.Resources>
+                                            <Style TargetType="Image">
+                                                <Setter Property="Height" Value="30"/>
+                                                <Setter Property="Width" Value="30"/>
+                                                <Setter Property="HorizontalAlignment" Value="Left"/>
+                                            </Style>
+                                        </StackPanel.Resources>
+                                        <Image Source="{Binding EnemyPlayerOne.ChampionIconPath}" />
+                                        <Image Source="{Binding EnemyPlayerTwo.ChampionIconPath}" Margin="5,0,0,0" />
+                                        <Image Source="{Binding EnemyPlayerThree.ChampionIconPath}" Margin="5,0,0,0" />
+                                        <Image Source="{Binding EnemyPlayerFour.ChampionIconPath}" Margin="5,0,0,0" />
+                                        <Image Source="{Binding EnemyPlayerFive.ChampionIconPath}" Margin="5,0,0,0" />
+                                    </StackPanel>
+                                </StackPanel>
+
+                                <!--Game information-->
+                                <StackPanel VerticalAlignment="Center" Margin="60,0,0,0"  HorizontalAlignment="Right">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition/>
+                                            <RowDefinition/>
+                                            <RowDefinition/>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <TextBlock  Grid.Row="0" Grid.ColumnSpan="2" Text="Game Information"/>
+
+                                        <!--Game date-->
+                                        <TextBlock Grid.Row="1" Grid.Column="0" Text="Date" Style="{StaticResource MaterialDesignBody2TextBlock}" FontSize="10"/>
+                                        <TextBlock Grid.Row="1" Grid.Column="1" Margin="10,0,0,0" Style="{StaticResource MaterialDesignBody1TextBlock}" Text="{Binding Matchup.MatchDate}" FontSize="10"/>
+
+                                        <!--Game patch-->
+                                        <TextBlock Grid.Row="2" Grid.Column="0" Text="Patch" Style="{StaticResource MaterialDesignBody2TextBlock}" FontSize="10"/>
+                                        <TextBlock Grid.Row="2" Grid.Column="1" Margin="10,0,0,0" Style="{StaticResource MaterialDesignBody1TextBlock}" Text="{Binding Matchup.MatchPatch}" FontSize="10"/>
+                                    </Grid>
+                                </StackPanel>
+                            </StackPanel>
+                        </StackPanel>
+                    </BulletDecorator.Bullet>
+                </BulletDecorator>
             </Expander.Header>
+
+            <Grid Height="auto" Background="White" VerticalAlignment="Bottom">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="20"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="20"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3">
+                    <TextBlock Text="Game overview" Margin="0,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="25"/>
+                    <TextBlock Text="{Binding Matchup.GameDate}" HorizontalAlignment="Center"/>
+                    <TextBlock Text="{Binding Matchup.GamePatch}" HorizontalAlignment="Center"/>
+                    <TextBlock Text="{Binding Matchup.GameDuration}" HorizontalAlignment="Center"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal"  Grid.Row="1" Grid.Column="1" >
+                    <TextBlock Text="My Team" FontSize="20"  VerticalAlignment="Center"/>
+                    <TextBlock FontWeight="Regular" VerticalAlignment="Center" DataContext="{Binding UsersTeam}" Margin="10,0,0,0">
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="{}{0}-{1}-{2}">
+                                <Binding Path="TotalKills"/>
+                                <Binding Path="TotalDeaths"/>
+                                <Binding Path="TotalAssists"/>
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                </StackPanel>
+
+                <DockPanel Grid.Row="1" Grid.Column="3" HorizontalAlignment="Right">
+                    <TextBlock FontWeight="Regular" VerticalAlignment="Center" DataContext="{Binding EnemyTeam}" Margin="0,0,10,0">
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="{}{0}-{1}-{2}">
+                                <Binding Path="TotalKills"/>
+                                <Binding Path="TotalDeaths"/>
+                                <Binding Path="TotalAssists"/>
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                    <TextBlock Text="Enemy Team" FontSize="20" VerticalAlignment="Center"/>
+                </DockPanel>
+
+                <TextBlock Grid.Row="2" Grid.Column="1" DataContext="{Binding UsersTeam}"  Margin="0,10,0,10">
+                    <Run Text="Dragon:"/>
+                    <Run Text="{Binding DragonKills}"/>
+                            
+                    <Run Text="  Rift Herald:"/>
+                    <Run Text="{Binding RiftHeraldKills}"/>
+                            
+                    <Run Text="  Dragon:"/>
+                    <Run Text="{Binding DragonKills}"/>
+                            
+                    <Run Text="  Baron:"/>
+                    <Run Text="{Binding BaronKills}"/>
+                </TextBlock>
+
+                <TextBlock Grid.Row="2" Grid.Column="3" DataContext="{Binding EnemyTeam}" HorizontalAlignment="Right" Margin="0,10,0,10">
+                    <Run Text="Dragon:"/>
+                    <Run Text="{Binding DragonKills}"/>
+                            
+                    <Run Text="  Rift Herald:"/>
+                    <Run Text="{Binding RiftHeraldKills}"/>
+                            
+                    <Run Text="  Dragon:"/>
+                    <Run Text="{Binding DragonKills}"/>
+                            
+                    <Run Text="  Baron:"/>
+                    <Run Text="{Binding BaronKills}"/>
+                </TextBlock>
+
+                <Separator Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" Background="#bdbdbd" VerticalAlignment="Bottom" Margin="0,25,0,0"/>
+                <Rectangle Grid.Row="3" Grid.Column="2" Grid.RowSpan="5" Margin="0,15,0,15" VerticalAlignment="Stretch" Width="1" Stroke="#bdbdbd" />
+            </Grid>
         </Expander>
     </Grid>
 </UserControl>
