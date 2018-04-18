@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 
-namespace LeagueCloudCoachDesktop.Models.StaticData
+namespace LeagueCloudCoachDesktop.Dto.StaticData
 {
-    public class SummonerSpell
+    public class SummonerSpellDto
     {
         [JsonProperty("summonerSpellId")]
         public int SummonerSpellId { get; set; }

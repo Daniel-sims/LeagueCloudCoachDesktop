@@ -3,28 +3,27 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
+using LeagueCloudCoachDesktop.Dto.MatchData;
+using LeagueCloudCoachDesktop.Dto.StaticData;
+using LeagueCloudCoachDesktop.Providers;
 
 namespace LeagueCloudCoachDesktop.Models.MatchData
 {
+    /* Matchup object to bind to kind of like a business object I suppose?*/
     public class Match
     {
-        [JsonProperty("gameId")]
-        public long GameId { get; set; }
+        public int UsersChampionId { get; set; }
+        
+        // Raw match data
+        public MatchDto MatchDto { get; set; }
 
-        [JsonProperty("gameDate")]
-        public DateTime GameDate { get; set; }
+        // Data to bind to
+        public bool UsersTeamWin => MatchDto?.WinningTeamId == UsersTeam?.MatchTeamDto.TeamId;
 
-        [JsonProperty("gameDuration")]
-        public TimeSpan GameDuration { get; set; }
+        public MatchTeam UsersTeam => new MatchTeam() { MatchTeamDto = MatchDto.Teams.FirstOrDefault(x => x.Players.All(y => y?.ChampionId == UsersChampionId)) };
 
-        [JsonProperty("gamePatch")]
-        public string GamePatch { get; set; }
+        public MatchTeam EnemyTeam => new MatchTeam() { MatchTeamDto = MatchDto.Teams.FirstOrDefault(x => x.Players.All(y => y?.ChampionId != UsersChampionId)) };
 
-        [JsonProperty("winningTeamId")]
-        public int? WinningTeamId { get; set; }
-
-        [JsonProperty("teams")]
-        public IEnumerable<MatchTeam> Teams { get; set; } = new List<MatchTeam>();
+        public MatchPlayer User => new MatchPlayer() { MatchPlayerDto = UsersTeam.MatchTeamDto.Players.First(x => x.ChampionId == UsersChampionId) };
     }
 }

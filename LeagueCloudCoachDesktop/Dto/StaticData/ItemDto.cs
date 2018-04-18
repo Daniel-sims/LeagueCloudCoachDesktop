@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 
-namespace LeagueCloudCoachDesktop.Models.StaticData
+namespace LeagueCloudCoachDesktop.Dto.StaticData
 {
-    public class Item
+    public class ItemDto
     {
         [JsonProperty("itemId")]
         public int ItemId { get; set; }

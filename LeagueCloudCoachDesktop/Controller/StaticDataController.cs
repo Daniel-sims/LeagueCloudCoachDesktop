@@ -1,6 +1,6 @@
 ﻿using LeagueCloudCoachDesktop.Controller.Interfaces;
 using LeagueCloudCoachDesktop.HttpRequest;
-using LeagueCloudCoachDesktop.Models.StaticData;
+using LeagueCloudCoachDesktop.Dto.StaticData;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -20,24 +20,24 @@ namespace LeagueCloudCoachDesktop.Controller
             _httpRequestWrapper = new HttpRequestWrapper(new TokenBasedRequestWrapper());
         }
 
-        public async Task<IEnumerable<Champion>> GetChampionData()
+        public async Task<IEnumerable<ChampionDto>> GetChampionData()
         {
-            return await _httpRequestWrapper.SendRequestAsync<List<Champion>>(GetChampionListStaticEndpoint);
+            return await _httpRequestWrapper.SendRequestAsync<List<ChampionDto>>(GetChampionListStaticEndpoint);
         }
 
-        public async Task<IEnumerable<Item>> GetItemData()
+        public async Task<IEnumerable<ItemDto>> GetItemData()
         {
-            return await _httpRequestWrapper.SendRequestAsync<List<Item>>(GetItemsListStaticEndpoint);
+            return await _httpRequestWrapper.SendRequestAsync<List<ItemDto>>(GetItemsListStaticEndpoint);
         }
 
-        public async Task<IEnumerable<SummonerSpell>> GetSummonerSpellData()
+        public async Task<IEnumerable<SummonerSpellDto>> GetSummonerSpellData()
         {
-            return await _httpRequestWrapper.SendRequestAsync<List<SummonerSpell>>(GetSummonerSpellsListStaticEndpoint);
+            return await _httpRequestWrapper.SendRequestAsync<List<SummonerSpellDto>>(GetSummonerSpellsListStaticEndpoint);
         }
 
-        public async Task<IEnumerable<Rune>> GetRuneData()
+        public async Task<IEnumerable<RuneDto>> GetRuneData()
         {
-            return await _httpRequestWrapper.SendRequestAsync<List<Rune>>(GetRunesListStaticEndpoint);
+            return await _httpRequestWrapper.SendRequestAsync<List<RuneDto>>(GetRunesListStaticEndpoint);
         }
     }
 }

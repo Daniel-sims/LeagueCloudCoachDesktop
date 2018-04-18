@@ -1,6 +1,6 @@
 ﻿using System;
 using GalaSoft.MvvmLight;
-using LeagueCloudCoachDesktop.Models.StaticData;
+using LeagueCloudCoachDesktop.Dto.StaticData;
 using LeagueCloudCoachDesktop.Providers;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -10,6 +10,7 @@ using System.Windows;
 using GalaSoft.MvvmLight.Command;
 using LeagueCloudCoachDesktop.Controller;
 using LeagueCloudCoachDesktop.Controller.Interfaces;
+using LeagueCloudCoachDesktop.Dto.MatchData;
 using LeagueCloudCoachDesktop.Models.MatchData;
 
 namespace LeagueCloudCoachDesktop.ViewModel.Matchup
@@ -44,7 +45,7 @@ namespace LeagueCloudCoachDesktop.ViewModel.Matchup
             }
         }
 
-        private IEnumerable<Champion> ChampionsStaticData { get; set; }
+        private IEnumerable<ChampionDto> ChampionsStaticData { get; set; }
 
         private ObservableCollection<string> _championStrings = new ObservableCollection<string>();
         public ObservableCollection<string> ChampionStrings
@@ -127,8 +128,11 @@ namespace LeagueCloudCoachDesktop.ViewModel.Matchup
                 {
                     var newMatchupInformation = new MatchupInformationViewModel()
                     {
-                        Matchup = matchup,
-                        UsersChampionId = Convert.ToInt32(ChampionsStaticData.FirstOrDefault(x => x.ChampionName == UsersChampion)?.ChampionId)
+                        Match = new Match()
+                        {
+                            MatchDto = matchup,
+                            UsersChampionId = Convert.ToInt32(ChampionsStaticData.FirstOrDefault(x => x.ChampionName == UsersChampion)?.ChampionId)
+                        }
                     };
 
                     matchupsCache.Add(newMatchupInformation);

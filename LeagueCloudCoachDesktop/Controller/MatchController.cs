@@ -4,7 +4,7 @@ using System.Text;
 using System.Threading.Tasks;
 using LeagueCloudCoachDesktop.Controller.Interfaces;
 using LeagueCloudCoachDesktop.HttpRequest;
-using LeagueCloudCoachDesktop.Models.MatchData;
+using LeagueCloudCoachDesktop.Dto.MatchData;
 
 namespace LeagueCloudCoachDesktop.Controller
 {
@@ -19,7 +19,7 @@ namespace LeagueCloudCoachDesktop.Controller
             _httpRequestWrapper = new HttpRequestWrapper(new TokenBasedRequestWrapper());
         }
 
-        public async Task<List<Match>> GetMatchupInformation(int usersChampionId, IEnumerable<int> teamOneChampionIds, IEnumerable<int> teamTwoChampionIds, int matchesToGet)
+        public async Task<List<MatchDto>> GetMatchupInformation(int usersChampionId, IEnumerable<int> teamOneChampionIds, IEnumerable<int> teamTwoChampionIds, int matchesToGet)
         {
             var getMatchupInformationUrl = new StringBuilder();
 
@@ -43,7 +43,7 @@ namespace LeagueCloudCoachDesktop.Controller
 
             getMatchupInformationUrl.AppendFormat(GetMatchupInformationUrl, teamOneChampionIdsUrl, teamTwoChampionIdsUrls, "&maxMatchLimit=" + matchesToGet);
 
-            return await _httpRequestWrapper.SendRequestAsync<List<Match>>(getMatchupInformationUrl.ToString());
+            return await _httpRequestWrapper.SendRequestAsync<List<MatchDto>>(getMatchupInformationUrl.ToString());
         }
     }
 }
