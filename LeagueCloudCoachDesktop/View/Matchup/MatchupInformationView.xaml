@@ -26,15 +26,15 @@
                             <StackPanel VerticalAlignment="Center" Orientation="Horizontal" Height="75">
                                 <Rectangle Width="10" Fill="{Binding Match.UsersTeamWin, Converter={StaticResource BoolToColourConverter}}" HorizontalAlignment="Left"/>
                                 <StackPanel Orientation="Vertical">
-                                    <Image Source="{Binding Match.UsersChampionIconPath}" HorizontalAlignment="Left" Height="50" Width="50" />
+                                    <Image Source="{Binding Match.User.ChampionIconPath}" HorizontalAlignment="Left" Height="50" Width="50" />
                                     <StackPanel Orientation="Horizontal">
-                                        <Image Source="{Binding Match.UsersSummonerOneIconPath}" HorizontalAlignment="Left" Height="25" Width="25" />
-                                        <Image Source="{Binding Match.UsersSummonerTwoIconPath}" HorizontalAlignment="Left" Height="25" Width="25" />
+                                        <Image Source="{Binding Match.User.SummonerOneIconPath}" HorizontalAlignment="Left" Height="25" Width="25" />
+                                        <Image Source="{Binding Match.User.SummonerTwoIconPath}" HorizontalAlignment="Left" Height="25" Width="25" />
                                     </StackPanel>
                                 </StackPanel>
                                 <StackPanel Orientation="Vertical" VerticalAlignment="Center" Margin="10,0,0,0">
-                                    <Image Source="{Binding Match.UsersPrimaryRuneStyleIconPath}" HorizontalAlignment="Left" Height="25" Width="25" />
-                                    <Image Source="{Binding Match.UsersSecondaryRuneStyleIconPath}" HorizontalAlignment="Left" Height="25" Width="25" />
+                                    <Image Source="{Binding Match.User.PrimaryRuneStyleIconPath}" HorizontalAlignment="Left" Height="25" Width="25" />
+                                    <Image Source="{Binding Match.User.SecondaryRuneStyleIconPath}" HorizontalAlignment="Left" Height="25" Width="25" />
                                 </StackPanel>
 
                                 <StackPanel Orientation="Horizontal" Margin="15,0,0,0" Width="100">
@@ -63,7 +63,7 @@
 
                                         <!--K/D/A-->
                                         <TextBlock Grid.Row="1" Grid.Column="0" Text="K/D/A"/>
-                                        <TextBlock Grid.Row="1" Grid.Column="2" DataContext="{Binding Match.UserMatchPlayer}">
+                                        <TextBlock Grid.Row="1" Grid.Column="2" DataContext="{Binding Match.User}">
                                             <TextBlock.Text>
                                                 <MultiBinding StringFormat="{}{0}/{1}/{2}">
                                                     <Binding Path="Kills"/>

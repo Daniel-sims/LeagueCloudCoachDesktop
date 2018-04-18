@@ -1,24 +1,21 @@
-﻿using System;
-using GalaSoft.MvvmLight;
+﻿using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
+using LeagueCloudCoachDesktop.Controller;
+using LeagueCloudCoachDesktop.Controller.Interfaces;
 using LeagueCloudCoachDesktop.Dto.StaticData;
+using LeagueCloudCoachDesktop.DtoToModelConverter;
 using LeagueCloudCoachDesktop.Providers;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
-using GalaSoft.MvvmLight.Command;
-using LeagueCloudCoachDesktop.Controller;
-using LeagueCloudCoachDesktop.Controller.Interfaces;
-using LeagueCloudCoachDesktop.Dto.MatchData;
-using LeagueCloudCoachDesktop.Models.MatchData;
 
 namespace LeagueCloudCoachDesktop.ViewModel.Matchup
 {
     public class MatchupViewModel : ViewModelBase
     {
-        //TODO This needs to come in through DI/CI for testability
-        private IStaticDataProvider StaticDataProvider { get; }= new StaticDataProvider();
         private IMatchController MatchController { get; } = new MatchController();
 
         public MatchupViewModel()
@@ -66,14 +63,7 @@ namespace LeagueCloudCoachDesktop.ViewModel.Matchup
         {
             get
             {
-                if (_resetCommand == null)
-                    _resetCommand = new RelayCommand(
-                        () =>
-                        {
-                            Matchups = null;
-                        });
-
-                return _resetCommand;
+                return _resetCommand ?? (_resetCommand = new RelayCommand(() => { Matchups = null; }));
             }
         }
 
@@ -82,18 +72,15 @@ namespace LeagueCloudCoachDesktop.ViewModel.Matchup
         {
             get
             {
-                if (_onSearchCommand == null)
-                    _onSearchCommand = new RelayCommand(
-                        async () =>
-                        {
-                            var returnedMatchups = await Task.Run(() => OnSearch());
-                            if (returnedMatchups != null)
-                            {
-                                Matchups = returnedMatchups;
-                            }
-                        });
-
-                return _onSearchCommand;
+                return _onSearchCommand ?? (_onSearchCommand = new RelayCommand(
+                           async () =>
+                           {
+                               var returnedMatchups = await Task.Run(OnSearch);
+                               if (returnedMatchups != null)
+                               {
+                                   Matchups = returnedMatchups;
+                               }
+                           }));
             }
         }
 
@@ -128,11 +115,7 @@ namespace LeagueCloudCoachDesktop.ViewModel.Matchup
                 {
                     var newMatchupInformation = new MatchupInformationViewModel()
                     {
-                        Match = new Match()
-                        {
-                            MatchDto = matchup,
-                            UsersChampionId = Convert.ToInt32(ChampionsStaticData.FirstOrDefault(x => x.ChampionName == UsersChampion)?.ChampionId)
-                        }
+                        Match = MatchDtoConverter.ConverMatchDtoToMatch(matchup)
                     };
 
                     matchupsCache.Add(newMatchupInformation);

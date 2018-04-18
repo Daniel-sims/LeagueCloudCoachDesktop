@@ -11,7 +11,7 @@ namespace LeagueCloudCoachDesktop.Controller
         private const string GetChampionListStaticEndpoint = "/StaticData/Champions";
         private const string GetItemsListStaticEndpoint = "/StaticData/Items";
         private const string GetSummonerSpellsListStaticEndpoint = "/StaticData/SummonerSpells";
-        private const string GetRunesListStaticEndpoint = "/StaticData/SummonerSpells";
+        private const string GetRunesListStaticEndpoint = "/StaticData/Runes";
 
         private readonly IHttpRequestWrapper _httpRequestWrapper;
 

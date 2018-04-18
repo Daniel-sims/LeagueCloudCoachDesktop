@@ -12,18 +12,16 @@ namespace LeagueCloudCoachDesktop.Models.MatchData
     /* Matchup object to bind to kind of like a business object I suppose?*/
     public class Match
     {
-        public int UsersChampionId { get; set; }
-        
-        // Raw match data
-        public MatchDto MatchDto { get; set; }
+        public TimeSpan GameDuration { get; set; }
 
-        // Data to bind to
-        public bool UsersTeamWin => MatchDto?.WinningTeamId == UsersTeam?.MatchTeamDto.TeamId;
+        public DateTime GameDate { get; set; }
 
-        public MatchTeam UsersTeam => new MatchTeam() { MatchTeamDto = MatchDto.Teams.FirstOrDefault(x => x.Players.All(y => y?.ChampionId == UsersChampionId)) };
+        public string GamePatch { get; set; }
 
-        public MatchTeam EnemyTeam => new MatchTeam() { MatchTeamDto = MatchDto.Teams.FirstOrDefault(x => x.Players.All(y => y?.ChampionId != UsersChampionId)) };
+        public int? WinningTeamId { get; set; }
 
-        public MatchPlayer User => new MatchPlayer() { MatchPlayerDto = UsersTeam.MatchTeamDto.Players.First(x => x.ChampionId == UsersChampionId) };
+        public MatchTeam TeamOne { get; set; }
+
+        public MatchTeam TeamTwo { get; set; }
     }
 }
