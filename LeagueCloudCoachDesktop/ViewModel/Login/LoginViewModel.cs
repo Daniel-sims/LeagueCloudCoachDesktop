@@ -12,7 +12,7 @@ namespace LeagueCloudCoachDesktop.ViewModel.Login
 {
     public class LoginViewModel : ViewModelBase
     {
-        private string _username;
+        private string _username = "daniel.sims1994@outlook.com";
         public string UserName
         {
             get => _username;
