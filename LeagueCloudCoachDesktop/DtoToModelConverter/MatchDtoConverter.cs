@@ -74,7 +74,7 @@ namespace LeagueCloudCoachDesktop.DtoToModelConverter
             return new MatchTeam();
         }
 
-        private static MatchPlayer ConvertMatchPlayerDtoToMatchPlayer(MatchPlayerDto matchPlayerDto)
+        public static MatchPlayer ConvertMatchPlayerDtoToMatchPlayer(MatchPlayerDto matchPlayerDto)
         {
             if (matchPlayerDto == null) return new MatchPlayer();
             
@@ -83,11 +83,13 @@ namespace LeagueCloudCoachDesktop.DtoToModelConverter
                 return new MatchPlayer
                 {
                     SummonerName = matchPlayerDto.SummonerName,
+                    TeamId = matchPlayerDto.TeamId,
                     Champion = ConvertChampionDtoToChampion(Champions.FirstOrDefault(x => x.ChampionId == matchPlayerDto.ChampionId)),
                     ChampionLevel = matchPlayerDto.ChampionLevel,
                     Kills = matchPlayerDto.Kills,
                     Deaths = matchPlayerDto.Deaths,
                     Assists = matchPlayerDto.Assists,
+                    CreepScore = matchPlayerDto.NeutralMinionsKilled + matchPlayerDto.TotalMinionsKilled,
                     ItemOne = ConvertItemDtoToItem(Items.FirstOrDefault(x => x.ItemId == matchPlayerDto.Item1Id)),
                     ItemTwo = ConvertItemDtoToItem(Items.FirstOrDefault(x => x.ItemId == matchPlayerDto.Item2Id)),
                     ItemThree = ConvertItemDtoToItem(Items.FirstOrDefault(x => x.ItemId == matchPlayerDto.Item3Id)),
@@ -144,7 +146,7 @@ namespace LeagueCloudCoachDesktop.DtoToModelConverter
                 return new Item
                 {
                     ItemName = itemDto.ItemName,
-                    ItemIconPath = ImageLocationStrings.ItemsImagesPath + itemDto.ItemId
+                    ItemIconPath = ImageLocationStrings.ItemsImagesPath + itemDto.ItemId + ImageLocationStrings.PngFileExtension
                 };
             }
             catch (Exception e)

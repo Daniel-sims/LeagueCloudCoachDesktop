@@ -16,6 +16,8 @@ namespace LeagueCloudCoachDesktop.Models.MatchData
        
         public string SummonerName { get; set; }
 
+        public int TeamId { get; set; }
+
         public Champion Champion { get; set; }
 
         public long ChampionLevel { get; set; }
@@ -25,6 +27,8 @@ namespace LeagueCloudCoachDesktop.Models.MatchData
         public long Deaths { get; set; }
 
         public long Assists { get; set; }
+
+        public long CreepScore { get; set; }
 
         public Item ItemOne { get; set; }
 

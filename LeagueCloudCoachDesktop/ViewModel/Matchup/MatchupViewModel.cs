@@ -11,6 +11,8 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using LeagueCloudCoachDesktop.Dto.MatchData;
+using LeagueCloudCoachDesktop.Models.MatchData;
 
 namespace LeagueCloudCoachDesktop.ViewModel.Matchup
 {
@@ -113,9 +115,10 @@ namespace LeagueCloudCoachDesktop.ViewModel.Matchup
             {
                 foreach (var matchup in returnedMatches)
                 {
-                    var newMatchupInformation = new MatchupInformationViewModel()
+                    var newMatchupInformation = new MatchupInformationViewModel
                     {
-                        Match = MatchDtoConverter.ConverMatchDtoToMatch(matchup)
+                        Match = MatchDtoConverter.ConverMatchDtoToMatch(matchup),
+                        UsersPlayer = GetPlayersChampionFromMatchDto(matchup, Convert.ToInt32(ChampionsStaticData.FirstOrDefault(x => x.ChampionName == UsersChampion)?.ChampionId))
                     };
 
                     matchupsCache.Add(newMatchupInformation);
@@ -124,6 +127,17 @@ namespace LeagueCloudCoachDesktop.ViewModel.Matchup
 
             SearchButtonEnabled = true;
             return matchupsCache;
+        }
+
+        private MatchPlayer GetPlayersChampionFromMatchDto(MatchDto matchup, int usersChampionId)
+        {
+            var matchPlayerDto = matchup?
+                .Teams?
+                .FirstOrDefault(x => x.Players
+                    .Any(y => y.ChampionId == usersChampionId))
+                ?.Players?.First(x => x.ChampionId == usersChampionId);
+
+            return MatchDtoConverter.ConvertMatchPlayerDtoToMatchPlayer(matchPlayerDto);
         }
 
         private bool _searchButtonEnabled = true;

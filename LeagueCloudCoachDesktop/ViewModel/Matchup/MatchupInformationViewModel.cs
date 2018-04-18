@@ -13,5 +13,10 @@ namespace LeagueCloudCoachDesktop.ViewModel.Matchup
     public class MatchupInformationViewModel
     {
         public Match Match { get; set; }
+
+        public MatchPlayer UsersPlayer { get; set; }
+
+        public bool UsersTeamWin => Match.WinningTeamId == UsersPlayer.TeamId;
+        
     }
 }
