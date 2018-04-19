@@ -135,7 +135,7 @@ namespace LeagueCloudCoachDesktop.ViewModel.Matchup
                 .Teams?
                 .FirstOrDefault(x => x.Players
                     .Any(y => y.ChampionId == usersChampionId))
-                ?.Players?.First(x => x.ChampionId == usersChampionId);
+                ?.Players?.FirstOrDefault(x => x.ChampionId == usersChampionId);
 
             return MatchDtoConverter.ConvertMatchPlayerDtoToMatchPlayer(matchPlayerDto);
         }

@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:LeagueCloudCoachDesktop.View.Matchup"
              xmlns:converter="clr-namespace:LeagueCloudCoachDesktop.View.Converter"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="300" d:DesignWidth="1600">
 
     <UserControl.Resources>
         <converter:MatchupBoolToColourConverter x:Key="BoolToColourConverter"/>
@@ -14,16 +14,19 @@
 
     <Grid>
         <Expander Background="{StaticResource PrimaryHueLightBrush}">
-            <Expander.Resources>
-                <Style TargetType="{x:Type TextBlock}">
-                    <Setter Property="Foreground" Value="{StaticResource PrimaryHueDarkBrush}"/>
-                </Style>
-            </Expander.Resources>
             <Expander.Header>
-                <BulletDecorator Height="auto">
+                <BulletDecorator Height="auto" Name="BulletDecorator">
                     <BulletDecorator.Bullet>
-                        <StackPanel Orientation="Horizontal">
-                            <StackPanel VerticalAlignment="Center" Orientation="Horizontal" Height="75">
+                        <!-- Overall wrapper for panels-->
+                        <Grid VerticalAlignment="Center" Height="75" Width="{Binding ActualWidth, ElementName=BulletDecorator}" HorizontalAlignment="Stretch">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="300"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="200"/>
+                            </Grid.ColumnDefinitions>
+
+                            <!-- Summoner information -->
+                            <StackPanel Grid.Column="0" Orientation="Horizontal">
                                 <Rectangle Width="10" Fill="{Binding UsersTeamWin, Converter={StaticResource BoolToColourConverter}}" HorizontalAlignment="Left"/>
                                 <StackPanel Orientation="Vertical">
                                     <Image Source="{Binding UsersPlayer.Champion.ChampionIconPath}" HorizontalAlignment="Left" Height="50" Width="50" />
@@ -81,8 +84,12 @@
                                         <TextBlock Grid.Row="3" Grid.Column="2" Text="{Binding UsersPlayer.CreepScore}" FontWeight="Thin"/>
                                     </Grid>
                                 </StackPanel>
+                            </StackPanel>
 
-                                <StackPanel Orientation="Horizontal" Margin="25,0,0,0">
+                            <!-- Items and champions -->
+                            <StackPanel Grid.Column="1" Orientation="Horizontal">
+                                <!-- Items -->
+                                <StackPanel Orientation="Horizontal">
                                     <StackPanel.Resources>
                                         <Style TargetType="Image">
                                             <Setter Property="Height" Value="30"/>
@@ -162,43 +169,44 @@
                                         <Image Source="{Binding Match.TeamTwo.PlayerFive.Champion.ChampionIconPath}"/>
                                     </StackPanel>
                                 </StackPanel>
-
-                                <!--Game information-->
-                                <StackPanel VerticalAlignment="Center" Margin="60,0,0,0"  HorizontalAlignment="Right">
-                                    <Grid>
-                                        <Grid.Resources>
-                                            <Style TargetType="TextBlock" BasedOn="{StaticResource MaterialDesignBody2TextBlock}">
-                                                <Setter Property="FontSize" Value="10"/>
-                                                <Setter Property="VerticalAlignment" Value="Center"/>
-                                            </Style>
-                                        </Grid.Resources>
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition/>
-                                            <RowDefinition/>
-                                            <RowDefinition/>
-                                        </Grid.RowDefinitions>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition/>
-                                            <ColumnDefinition/>
-                                        </Grid.ColumnDefinitions>
-
-                                        <TextBlock  Grid.Row="0" Grid.ColumnSpan="2" Text="Game Information" FontSize="12"/>
-
-                                        <!--Game date-->
-                                        <TextBlock Grid.Row="1" Grid.Column="0" Text="Date"/>
-                                        <TextBlock Grid.Row="1" Grid.Column="1" Margin="10,0,0,0" Text="{Binding Match.GameDate}" FontWeight="Thin"/>
-
-                                        <!--Game patch-->
-                                        <TextBlock Grid.Row="2" Grid.Column="0" Text="Patch"/>
-                                        <TextBlock Grid.Row="2" Grid.Column="1" Margin="10,0,0,0" Text="{Binding Match.GamePatch}" FontWeight="Thin"/>
-                                    </Grid>
-                                </StackPanel>
                             </StackPanel>
-                        </StackPanel>
+
+                            <!--Game information-->
+                            <StackPanel Grid.Column="2" VerticalAlignment="Center">
+                                <Grid>
+                                    <Grid.Resources>
+                                        <Style TargetType="TextBlock" BasedOn="{StaticResource MaterialDesignBody2TextBlock}">
+                                            <Setter Property="FontSize" Value="10"/>
+                                            <Setter Property="VerticalAlignment" Value="Center"/>
+                                        </Style>
+                                    </Grid.Resources>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="40"/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="Game Information" FontSize="12"/>
+
+                                    <!--Game date-->
+                                    <TextBlock Grid.Row="1" Grid.Column="0" Text="Date"/>
+                                    <TextBlock Grid.Row="1" Grid.Column="1" Margin="10,0,0,0" Text="{Binding Match.GameDate}" FontWeight="Thin"/>
+
+                                    <!--Game patch-->
+                                    <TextBlock Grid.Row="2" Grid.Column="0" Text="Patch"/>
+                                    <TextBlock Grid.Row="2" Grid.Column="1" Margin="10,0,0,0" Text="{Binding Match.GamePatch}" FontWeight="Thin"/>
+                                </Grid>
+                            </StackPanel>
+                        </Grid>
                     </BulletDecorator.Bullet>
                 </BulletDecorator>
             </Expander.Header>
 
+            <!-- Main expander content-->
             <Grid Height="auto" Background="White" VerticalAlignment="Bottom">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
@@ -232,7 +240,7 @@
                 </StackPanel>
 
                 <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="1">
-                    <TextBlock Text="My Team" Style="{StaticResource MaterialDesignTitleTextBlock}" FontWeight="Thin" VerticalAlignment="Center" Foreground="{StaticResource PrimaryHueDarkBrush}"/>
+                    <TextBlock Text="My Team" Style="{StaticResource MaterialDesignTitleTextBlock}" FontWeight="Thin" VerticalAlignment="Center" Foreground="{StaticResource PrimaryHueMidBrush}"/>
                     <TextBlock DataContext="{Binding UsersTeam}" Style="{StaticResource MaterialDesignBody2TextBlock}" FontWeight="Thin" VerticalAlignment="Center" Margin="0,5,0,0">
                         <TextBlock.Text>
                             <MultiBinding StringFormat="{}{0}-{1}-{2}">
@@ -246,7 +254,7 @@
 
                 <DockPanel Grid.Row="1" Grid.Column="3" HorizontalAlignment="Right">
                     <StackPanel Orientation="Vertical">
-                        <TextBlock Text="Enemy Team" Style="{StaticResource MaterialDesignTitleTextBlock}" FontWeight="Thin" VerticalAlignment="Center" Foreground="{StaticResource PrimaryHueDarkBrush}"/>
+                        <TextBlock Text="Enemy Team" Style="{StaticResource MaterialDesignTitleTextBlock}" FontWeight="Thin" VerticalAlignment="Center" Foreground="{StaticResource PrimaryHueMidBrush}"/>
                         <TextBlock DataContext="{Binding EnemyTeam}" Style="{StaticResource MaterialDesignBody2TextBlock}" FontWeight="Thin" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,5,0,0">
                             <TextBlock.Text>
                                 <MultiBinding StringFormat="{}{0}-{1}-{2}">
@@ -259,31 +267,33 @@
                     </StackPanel>
                 </DockPanel>
 
-                <TextBlock Grid.Row="2" Grid.Column="1" DataContext="{Binding UsersTeam}"  Margin="0,10,0,10">
-                    <Run Text="Dragon:"/>
+                <TextBlock Grid.Row="2" Grid.Column="1" DataContext="{Binding UsersTeam}" VerticalAlignment="Center" Style="{StaticResource MaterialDesignBody2TextBlock}" FontSize="10" FontWeight="Thin">
+                    
+                    <Run Text="Dragon:" Foreground="{StaticResource PrimaryHueDarkBrush}"/>
                     <Run Text="{Binding DragonKills}"/>
                             
-                    <Run Text="  Rift Herald:"/>
+                    <Run Text="  Rift Herald:" Foreground="{StaticResource PrimaryHueDarkBrush}"/>
                     <Run Text="{Binding RiftHeraldKills}"/>
                             
-                    <Run Text="  Dragon:"/>
+                    <Run Text="  Dragon:" Foreground="{StaticResource PrimaryHueDarkBrush}"/>
                     <Run Text="{Binding DragonKills}"/>
                             
-                    <Run Text="  Baron:"/>
+                    <Run Text="  Baron:" Foreground="{StaticResource PrimaryHueDarkBrush}"/>
                     <Run Text="{Binding BaronKills}"/>
                 </TextBlock>
 
-                <TextBlock Grid.Row="2" Grid.Column="3" DataContext="{Binding EnemyTeam}" HorizontalAlignment="Right" Margin="0,10,0,10">
-                    <Run Text="Dragon:"/>
+                <TextBlock Grid.Row="2" Grid.Column="3" DataContext="{Binding EnemyTeam}" HorizontalAlignment="Right" VerticalAlignment="Center" Style="{StaticResource MaterialDesignBody2TextBlock}" FontSize="10" FontWeight="Thin">
+
+                    <Run Text="Dragon:" Foreground="{StaticResource PrimaryHueDarkBrush}"/>
                     <Run Text="{Binding DragonKills}"/>
                             
-                    <Run Text="  Rift Herald:"/>
+                    <Run Text="  Rift Herald:" Foreground="{StaticResource PrimaryHueDarkBrush}"/>
                     <Run Text="{Binding RiftHeraldKills}"/>
                             
-                    <Run Text="  Dragon:"/>
+                    <Run Text="  Dragon:" Foreground="{StaticResource PrimaryHueDarkBrush}"/>
                     <Run Text="{Binding DragonKills}"/>
                             
-                    <Run Text="  Baron:"/>
+                    <Run Text="  Baron:" Foreground="{StaticResource PrimaryHueDarkBrush}"/>
                     <Run Text="{Binding BaronKills}"/>
                 </TextBlock>
 
