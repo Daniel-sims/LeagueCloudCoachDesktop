@@ -30,4 +30,8 @@
         <MatchupV:MatchupInformationView />
     </DataTemplate>
 
+    <DataTemplate DataType="{x:Type MatchupVm:MatchupPlayerViewModel}">
+        <MatchupV:MatchupPlayerView />
+    </DataTemplate>
+
 </ResourceDictionary>

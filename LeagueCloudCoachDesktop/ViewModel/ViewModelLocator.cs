@@ -26,19 +26,22 @@ namespace LeagueCloudCoachDesktop.ViewModel
             SimpleIoc.Default.Register<HomeViewModel>();
             SimpleIoc.Default.Register<MatchupViewModel>();
             SimpleIoc.Default.Register<MatchupInformationViewModel>();
+            SimpleIoc.Default.Register<MatchupPlayerViewModel>();
         }
 
-        public MainViewModel Main { get { return ServiceLocator.Current.GetInstance<MainViewModel>(); } }
+        public MainViewModel Main => ServiceLocator.Current.GetInstance<MainViewModel>(); 
 
-        public LoginViewModel Login { get { return ServiceLocator.Current.GetInstance<LoginViewModel>(); } }
+        public LoginViewModel Login => ServiceLocator.Current.GetInstance<LoginViewModel>(); 
         
-        public MainApplicationViewModel MainApplication { get { return ServiceLocator.Current.GetInstance<MainApplicationViewModel>(); } }
+        public MainApplicationViewModel MainApplication => ServiceLocator.Current.GetInstance<MainApplicationViewModel>(); 
 
-        public HomeViewModel Home { get { return ServiceLocator.Current.GetInstance<HomeViewModel>(); } }
+        public HomeViewModel Home => ServiceLocator.Current.GetInstance<HomeViewModel>(); 
 
-        public MatchupViewModel Matchup { get { return ServiceLocator.Current.GetInstance<MatchupViewModel>(); } }
+        public MatchupViewModel Matchup => ServiceLocator.Current.GetInstance<MatchupViewModel>(); 
 
-        public MatchupInformationViewModel MatchupInformation { get { return ServiceLocator.Current.GetInstance<MatchupInformationViewModel>(); } }
+        public MatchupInformationViewModel MatchupInformation => ServiceLocator.Current.GetInstance<MatchupInformationViewModel>(); 
+
+        public MatchupPlayerViewModel MatchupPlayer => ServiceLocator.Current.GetInstance<MatchupPlayerViewModel>(); 
 
         public static void Cleanup() { }
     }
