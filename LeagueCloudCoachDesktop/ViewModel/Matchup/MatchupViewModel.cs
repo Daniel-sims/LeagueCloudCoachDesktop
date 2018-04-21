@@ -111,17 +111,23 @@ namespace LeagueCloudCoachDesktop.ViewModel.Matchup
 
             var returnedMatches = await MatchController.GetMatchupInformation(Convert.ToInt32(ChampionsStaticData.FirstOrDefault(x => x.ChampionName == UsersChampion)?.ChampionId), FriendlyTeamIdsAsList, EnemyTeamIdsAsList, Convert.ToInt32(NumberOfMatches));
 
-            if (returnedMatches?.Count > 0)
+            if (returnedMatches?.Count() > 0)
             {
                 foreach (var matchup in returnedMatches)
                 {
-                    var newMatchupInformation = new MatchupInformationViewModel
-                    {
-                        Match = MatchDtoConverter.ConverMatchDtoToMatch(matchup),
-                        UsersPlayer = GetPlayersChampionFromMatchDto(matchup, Convert.ToInt32(ChampionsStaticData.FirstOrDefault(x => x.ChampionName == UsersChampion)?.ChampionId))
-                    };
 
-                    matchupsCache.Add(newMatchupInformation);
+                    var matchTimeline = await MatchController.GetMatchTimelineForGameId(matchup.GameId);
+
+                    if (matchTimeline != null)
+                    {
+                        var newMatchupInformation = new MatchupInformationViewModel
+                        {
+                            Match = MatchDtoConverter.ConverMatchDtoToMatch(matchup, matchTimeline),
+                            UsersPlayer = await GetPlayersChampionFromMatchDto(matchup, Convert.ToInt32(ChampionsStaticData.FirstOrDefault(x => x.ChampionName == UsersChampion)?.ChampionId))
+                        };
+
+                        matchupsCache.Add(newMatchupInformation);
+                    }
                 }
             }
 
@@ -129,15 +135,21 @@ namespace LeagueCloudCoachDesktop.ViewModel.Matchup
             return matchupsCache;
         }
 
-        private MatchPlayer GetPlayersChampionFromMatchDto(MatchDto matchup, int usersChampionId)
+        private async Task<MatchPlayer> GetPlayersChampionFromMatchDto(MatchDto matchup, int usersChampionId)
         {
-            var matchPlayerDto = matchup?
+            if (matchup == null) return new MatchPlayer();
+
+            var matchPlayerDto = matchup
                 .Teams?
                 .FirstOrDefault(x => x.Players
                     .Any(y => y.ChampionId == usersChampionId))
                 ?.Players?.FirstOrDefault(x => x.ChampionId == usersChampionId);
+            
+            var matchTimelineDto = await MatchController.GetMatchTimelineForGameId(matchup.GameId);
 
-            return MatchDtoConverter.ConvertMatchPlayerDtoToMatchPlayer(matchPlayerDto);
+            return MatchDtoConverter.ConvertMatchPlayerDtoToMatchPlayer(
+                matchPlayerDto, 
+                matchTimelineDto.Events.Where(x => x.ParticipantId == matchPlayerDto?.ParticipantId));
         }
 
         private bool _searchButtonEnabled = true;

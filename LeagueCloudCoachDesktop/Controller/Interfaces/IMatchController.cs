@@ -9,6 +9,8 @@ namespace LeagueCloudCoachDesktop.Controller.Interfaces
 {
     public interface IMatchController
     {
-        Task<List<MatchDto>> GetMatchupInformation(int usersChampionId, IEnumerable<int> teamOneChampionIds, IEnumerable<int> teamOneChampionIdsUrl, int matchesToGet = 5);
+        Task<IEnumerable<MatchDto>> GetMatchupInformation(int usersChampionId, IEnumerable<int> teamOneChampionIds, IEnumerable<int> teamOneChampionIdsUrl, int matchesToGet = 5);
+
+        Task<MatchTimelineDto> GetMatchTimelineForGameId(long gameId);
     }
 }

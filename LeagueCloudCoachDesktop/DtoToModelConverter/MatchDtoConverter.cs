@@ -17,9 +17,11 @@ namespace LeagueCloudCoachDesktop.DtoToModelConverter
         private static readonly IEnumerable<SummonerSpellDto> SummonerSpells = StaticDataProvider.GetSummonerSpellsStatic().Result;
         private static readonly IEnumerable<ChampionDto> Champions = StaticDataProvider.GetChampionsStatic().Result;
 
-        public static Match ConverMatchDtoToMatch(MatchDto matchDto)
+
+
+        public static Match ConverMatchDtoToMatch(MatchDto matchDto, MatchTimelineDto matchTimelineDto)
         {
-            if(matchDto == null) return new Match();
+            if(matchDto == null || matchTimelineDto == null) return new Match();
 
             try
             {
@@ -30,8 +32,17 @@ namespace LeagueCloudCoachDesktop.DtoToModelConverter
                     GamePatch = matchDto.GamePatch,
                     WinningTeamId = matchDto.WinningTeamId,
 
-                    TeamOne = ConvertMatchTeamDtoToMatchTeam(matchDto.Teams.ElementAtOrDefault(0)),
-                    TeamTwo = ConvertMatchTeamDtoToMatchTeam(matchDto.Teams.ElementAtOrDefault(1))
+                    TeamOne = ConvertMatchTeamDtoToMatchTeam
+                    (
+                        matchDto.Teams.ElementAtOrDefault(0), 
+                        matchTimelineDto.Events
+                    ),
+
+                    TeamTwo = ConvertMatchTeamDtoToMatchTeam
+                    (
+                        matchDto.Teams.ElementAtOrDefault(1),
+                        matchTimelineDto.Events
+                    )
                 };
             }
             catch (Exception e)
@@ -42,9 +53,9 @@ namespace LeagueCloudCoachDesktop.DtoToModelConverter
             return new Match();
         }
 
-        private static MatchTeam ConvertMatchTeamDtoToMatchTeam(MatchTeamDto matchTeamDto)
+        private static MatchTeam ConvertMatchTeamDtoToMatchTeam(MatchTeamDto matchTeamDto, IEnumerable<MatchEventDto> matchEventsDtoList)
         {
-            if (matchTeamDto == null) return new MatchTeam();
+            if (matchTeamDto == null || matchEventsDtoList == null) return new MatchTeam();
 
             try
             {
@@ -59,11 +70,25 @@ namespace LeagueCloudCoachDesktop.DtoToModelConverter
                     TeamDeaths = matchTeamDto.Players.Sum(x => x.Deaths),
                     TeamAssists = matchTeamDto.Players.Sum(x => x.Assists),
 
-                    PlayerOne = ConvertMatchPlayerDtoToMatchPlayer(matchTeamDto.Players.ElementAtOrDefault(0)),
-                    PlayerTwo = ConvertMatchPlayerDtoToMatchPlayer(matchTeamDto.Players.ElementAtOrDefault(1)),
-                    PlayerThree = ConvertMatchPlayerDtoToMatchPlayer(matchTeamDto.Players.ElementAtOrDefault(2)),
-                    PlayerFour = ConvertMatchPlayerDtoToMatchPlayer(matchTeamDto.Players.ElementAtOrDefault(3)),
-                    PlayerFive = ConvertMatchPlayerDtoToMatchPlayer(matchTeamDto.Players.ElementAtOrDefault(4))
+                    PlayerOne = ConvertMatchPlayerDtoToMatchPlayer(
+                        matchTeamDto.Players.ElementAtOrDefault(0),
+                        matchEventsDtoList.Where(x => x.ParticipantId == matchTeamDto.Players.ElementAtOrDefault(0)?.ParticipantId)),
+
+                    PlayerTwo = ConvertMatchPlayerDtoToMatchPlayer(
+                        matchTeamDto.Players.ElementAtOrDefault(1),
+                        matchEventsDtoList.Where(x => x.ParticipantId == matchTeamDto.Players.ElementAtOrDefault(1)?.ParticipantId)),
+
+                    PlayerThree = ConvertMatchPlayerDtoToMatchPlayer(
+                        matchTeamDto.Players.ElementAtOrDefault(2),
+                        matchEventsDtoList.Where(x => x.ParticipantId == matchTeamDto.Players.ElementAtOrDefault(2)?.ParticipantId)),
+
+                    PlayerFour = ConvertMatchPlayerDtoToMatchPlayer(
+                        matchTeamDto.Players.ElementAtOrDefault(3),
+                        matchEventsDtoList.Where(x => x.ParticipantId == matchTeamDto.Players.ElementAtOrDefault(3)?.ParticipantId)),
+
+                    PlayerFive = ConvertMatchPlayerDtoToMatchPlayer(
+                        matchTeamDto.Players.ElementAtOrDefault(4),
+                        matchEventsDtoList.Where(x => x.ParticipantId == matchTeamDto.Players.ElementAtOrDefault(4)?.ParticipantId))
                 };
             }
             catch (Exception e)
@@ -74,7 +99,7 @@ namespace LeagueCloudCoachDesktop.DtoToModelConverter
             return new MatchTeam();
         }
 
-        public static MatchPlayer ConvertMatchPlayerDtoToMatchPlayer(MatchPlayerDto matchPlayerDto)
+        public static MatchPlayer ConvertMatchPlayerDtoToMatchPlayer(MatchPlayerDto matchPlayerDto, IEnumerable<MatchEventDto> matchEventDtoList)
         {
             if (matchPlayerDto == null) return new MatchPlayer();
             
@@ -106,7 +131,8 @@ namespace LeagueCloudCoachDesktop.DtoToModelConverter
                     PrimaryRuneSubStyleFour = ConvertRuneDtoToRuneSubStyle(Runes.FirstOrDefault(x => x.RuneId == matchPlayerDto.PrimaryRuneSubStyleFourId)),
                     SecondaryRuneStyle = ConvertRuneDtoToRuneStyle(Runes.FirstOrDefault(x => x.RunePathId == matchPlayerDto.SecondaryRuneStyleId)),
                     SecondaryRuneSubStyleOne = ConvertRuneDtoToRuneSubStyle(Runes.FirstOrDefault(x => x.RuneId == matchPlayerDto.SecondaryRuneSubStyleOneId)),
-                    SecondaryRuneSubStyleTwo = ConvertRuneDtoToRuneSubStyle(Runes.FirstOrDefault(x => x.RuneId == matchPlayerDto.SecondaryRuneSubStyleTwoId))
+                    SecondaryRuneSubStyleTwo = ConvertRuneDtoToRuneSubStyle(Runes.FirstOrDefault(x => x.RuneId == matchPlayerDto.SecondaryRuneSubStyleTwoId)),
+                    MatchEvents = ConvertTimeEventsDtoToTimelineEvents(matchEventDtoList)
                 };
             }
             catch (Exception e)
@@ -115,6 +141,50 @@ namespace LeagueCloudCoachDesktop.DtoToModelConverter
             }
            
             return new MatchPlayer();
+        }
+
+        private static IEnumerable<MatchEvent> ConvertTimeEventsDtoToTimelineEvents(
+            IEnumerable<MatchEventDto> matchEventDtoList)
+        {
+            if (matchEventDtoList == null) return new List<MatchEvent>();
+
+            try
+            {
+                var matchEventList = new List<MatchEvent>();
+
+                foreach (var matchEvent in matchEventDtoList)
+                {
+                    matchEventList.Add(new MatchEvent
+                    {
+                        Type = matchEvent.Type,
+                        Timestamp = matchEvent.Timestamp,
+                        ParticipantId = matchEvent.ParticipantId,
+                        ItemId = matchEvent.ItemId,
+                        SkillSlot = matchEvent.SkillSlot,
+                        LevelUpType = matchEvent.LevelUpType,
+                        WardType = matchEvent.WardType,
+                        CreatorId = matchEvent.CreatorId,
+                        KillerId = matchEvent.KillerId,
+                        VictimId = matchEvent.VictimId,
+                        AfterId = matchEvent.AfterId,
+                        BeforeId = matchEvent.BeforeId,
+                        TeamId = matchEvent.TeamId,
+                        BuildingType = matchEvent.BuildingType,
+                        LaneType = matchEvent.LaneType,
+                        TowerType = matchEvent.TowerType,
+                        MonsterType = matchEvent.MonsterType,
+                        MonsterSubType = matchEvent.MonsterSubType
+                    });
+                }
+
+                return matchEventList;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Exception caught when converting list of MatchEventDto to list of MatchEvent : " + e.Message);
+            }
+
+            return new List<MatchEvent>();
         }
 
         public static Champion ConvertChampionDtoToChampion(ChampionDto championDto)

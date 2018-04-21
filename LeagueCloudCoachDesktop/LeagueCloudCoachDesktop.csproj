@@ -106,6 +106,8 @@
     <Compile Include="Controller\MatchController.cs" />
     <Compile Include="Controller\StaticDataController.cs" />
     <Compile Include="DtoToModelConverter\MatchDtoConverter.cs" />
+    <Compile Include="Dto\MatchData\MatchEventDto.cs" />
+    <Compile Include="Dto\MatchData\MatchTimelineDto.cs" />
     <Compile Include="HttpRequest\HttpRequestWrapper.cs" />
     <Compile Include="HttpRequest\IHttpRequestWrapper.cs" />
     <Compile Include="HttpRequest\ITokenBasedRequestWrapper.cs" />
@@ -119,8 +121,10 @@
     <Compile Include="Dto\StaticData\RuneDto.cs" />
     <Compile Include="Dto\StaticData\SummonerSpellDto.cs" />
     <Compile Include="Models\MatchData\Match.cs" />
+    <Compile Include="Models\MatchData\MatchEvent.cs" />
     <Compile Include="Models\MatchData\MatchPlayer.cs" />
     <Compile Include="Models\MatchData\MatchTeam.cs" />
+    <Compile Include="Models\MatchData\MatchTimeline.cs" />
     <Compile Include="Models\StaticData\Champion.cs" />
     <Compile Include="Models\StaticData\Item.cs" />
     <Compile Include="Models\StaticData\Rune.cs" />

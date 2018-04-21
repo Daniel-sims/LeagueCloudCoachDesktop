@@ -13,7 +13,7 @@ namespace LeagueCloudCoachDesktop.Models.MatchData
 {
     public class MatchPlayer
     {
-       
+
         public string SummonerName { get; set; }
 
         public int TeamId { get; set; }
@@ -63,5 +63,7 @@ namespace LeagueCloudCoachDesktop.Models.MatchData
         public Rune SecondaryRuneSubStyleOne { get; set; }
 
         public Rune SecondaryRuneSubStyleTwo { get; set; }
+
+        public IEnumerable<MatchEvent> MatchEvents { get; set; }
     }
 }
