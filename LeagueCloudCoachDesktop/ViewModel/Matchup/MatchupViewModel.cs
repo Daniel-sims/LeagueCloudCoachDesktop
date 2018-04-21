@@ -123,7 +123,7 @@ namespace LeagueCloudCoachDesktop.ViewModel.Matchup
                         var newMatchupInformation = new MatchupInformationViewModel
                         {
                             Match = MatchDtoConverter.ConverMatchDtoToMatch(matchup, matchTimeline),
-                            UsersPlayer = await GetPlayersChampionFromMatchDto(matchup, Convert.ToInt32(ChampionsStaticData.FirstOrDefault(x => x.ChampionName == UsersChampion)?.ChampionId))
+                            UsersPlayer = await GetPlayersChampionFromMatchDto(matchup, matchTimeline, Convert.ToInt32(ChampionsStaticData.FirstOrDefault(x => x.ChampionName == UsersChampion)?.ChampionId))
                         };
 
                         matchupsCache.Add(newMatchupInformation);
@@ -135,7 +135,7 @@ namespace LeagueCloudCoachDesktop.ViewModel.Matchup
             return matchupsCache;
         }
 
-        private async Task<MatchPlayer> GetPlayersChampionFromMatchDto(MatchDto matchup, int usersChampionId)
+        private async Task<MatchPlayer> GetPlayersChampionFromMatchDto(MatchDto matchup, MatchTimelineDto matchTimlineDto,  int usersChampionId)
         {
             if (matchup == null) return new MatchPlayer();
 
@@ -145,11 +145,9 @@ namespace LeagueCloudCoachDesktop.ViewModel.Matchup
                     .Any(y => y.ChampionId == usersChampionId))
                 ?.Players?.FirstOrDefault(x => x.ChampionId == usersChampionId);
             
-            var matchTimelineDto = await MatchController.GetMatchTimelineForGameId(matchup.GameId);
-
             return MatchDtoConverter.ConvertMatchPlayerDtoToMatchPlayer(
-                matchPlayerDto, 
-                matchTimelineDto.Events.Where(x => x.ParticipantId == matchPlayerDto?.ParticipantId));
+                matchPlayerDto,
+                matchTimlineDto.Events.Where(x => x.ParticipantId == matchPlayerDto?.ParticipantId));
         }
 
         private bool _searchButtonEnabled = true;

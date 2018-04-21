@@ -8,7 +8,9 @@
                     xmlns:HomeVm="clr-namespace:LeagueCloudCoachDesktop.ViewModel.Home"
                     xmlns:HomeV="clr-namespace:LeagueCloudCoachDesktop.View.Home"
                     xmlns:MatchupVm="clr-namespace:LeagueCloudCoachDesktop.ViewModel.Matchup"
-                    xmlns:MatchupV="clr-namespace:LeagueCloudCoachDesktop.View.Matchup">
+                    xmlns:MatchupV="clr-namespace:LeagueCloudCoachDesktop.View.Matchup"
+                    xmlns:MatchupPopupVm="clr-namespace:LeagueCloudCoachDesktop.ViewModel.Matchup.Popup"
+                    xmlns:MatchupPopupV="clr-namespace:LeagueCloudCoachDesktop.View.Matchup.Popup">
 
     <DataTemplate DataType="{x:Type loginVm:LoginViewModel}">
         <loginV:LoginView />
@@ -32,6 +34,10 @@
 
     <DataTemplate DataType="{x:Type MatchupVm:MatchupPlayerViewModel}">
         <MatchupV:MatchupPlayerView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type MatchupPopupVm:DetailedMatchupPlayerViewModel}">
+        <MatchupPopupV:DetailedMatchupPlayerView/>
     </DataTemplate>
 
 </ResourceDictionary>

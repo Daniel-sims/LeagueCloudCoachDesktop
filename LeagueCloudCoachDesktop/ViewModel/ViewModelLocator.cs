@@ -1,10 +1,12 @@
 using CommonServiceLocator;
 using GalaSoft.MvvmLight.Ioc;
 using LeagueCloudCoachDesktop.Providers;
+using LeagueCloudCoachDesktop.View.Matchup.Popup;
 using LeagueCloudCoachDesktop.ViewModel.Application;
 using LeagueCloudCoachDesktop.ViewModel.Home;
 using LeagueCloudCoachDesktop.ViewModel.Login;
 using LeagueCloudCoachDesktop.ViewModel.Matchup;
+using LeagueCloudCoachDesktop.ViewModel.Matchup.Popup;
 
 namespace LeagueCloudCoachDesktop.ViewModel
 {
@@ -25,8 +27,11 @@ namespace LeagueCloudCoachDesktop.ViewModel
             // Tabs 
             SimpleIoc.Default.Register<HomeViewModel>();
             SimpleIoc.Default.Register<MatchupViewModel>();
+
+            //Matchup
             SimpleIoc.Default.Register<MatchupInformationViewModel>();
             SimpleIoc.Default.Register<MatchupPlayerViewModel>();
+            SimpleIoc.Default.Register<DetailedMatchupPlayerViewModel>();
         }
 
         public MainViewModel Main => ServiceLocator.Current.GetInstance<MainViewModel>(); 
@@ -41,7 +46,9 @@ namespace LeagueCloudCoachDesktop.ViewModel
 
         public MatchupInformationViewModel MatchupInformation => ServiceLocator.Current.GetInstance<MatchupInformationViewModel>(); 
 
-        public MatchupPlayerViewModel MatchupPlayer => ServiceLocator.Current.GetInstance<MatchupPlayerViewModel>(); 
+        public MatchupPlayerViewModel MatchupPlayer => ServiceLocator.Current.GetInstance<MatchupPlayerViewModel>();
+
+        public DetailedMatchupPlayerView DetailedMatchupPlayer => ServiceLocator.Current.GetInstance<DetailedMatchupPlayerView>();
 
         public static void Cleanup() { }
     }

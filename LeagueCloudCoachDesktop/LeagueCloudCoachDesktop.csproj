@@ -138,6 +138,7 @@
     <Compile Include="ViewModel\Matchup\MatchupInformationViewModel.cs" />
     <Compile Include="ViewModel\Matchup\MatchupPlayerViewModel.cs" />
     <Compile Include="ViewModel\Matchup\MatchupViewModel.cs" />
+    <Compile Include="ViewModel\Matchup\Popup\DetailedMatchupPlayerViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="View\Application\MainApplicationView.xaml.cs">
       <DependentUpon>MainApplicationView.xaml</DependentUpon>
@@ -157,6 +158,9 @@
     </Compile>
     <Compile Include="View\Matchup\MatchupView.xaml.cs">
       <DependentUpon>MatchupView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Matchup\Popup\DetailedMatchupPlayerView.xaml.cs">
+      <DependentUpon>DetailedMatchupPlayerView.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -199,6 +203,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Matchup\MatchupView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Matchup\Popup\DetailedMatchupPlayerView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
