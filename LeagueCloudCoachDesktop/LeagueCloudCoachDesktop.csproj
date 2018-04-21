@@ -226,7 +226,9 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Images\Item\2065.png" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Champion\Aatrox.png" />
     <Resource Include="Images\Champion\Ahri.png" />

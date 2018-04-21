@@ -89,7 +89,7 @@ namespace LeagueCloudCoachDesktop.DtoToModelConverter
                     Kills = matchPlayerDto.Kills,
                     Deaths = matchPlayerDto.Deaths,
                     Assists = matchPlayerDto.Assists,
-                    CreepScore = matchPlayerDto.NeutralMinionsKilled + matchPlayerDto.TotalMinionsKilled,
+                    CreepScore = matchPlayerDto.TotalMinionsKilled + matchPlayerDto.NeutralMinionsKilled,
                     ItemOne = ConvertItemDtoToItem(Items.FirstOrDefault(x => x.ItemId == matchPlayerDto.Item1Id)),
                     ItemTwo = ConvertItemDtoToItem(Items.FirstOrDefault(x => x.ItemId == matchPlayerDto.Item2Id)),
                     ItemThree = ConvertItemDtoToItem(Items.FirstOrDefault(x => x.ItemId == matchPlayerDto.Item3Id)),

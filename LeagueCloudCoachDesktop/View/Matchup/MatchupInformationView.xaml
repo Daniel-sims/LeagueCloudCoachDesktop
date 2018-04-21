@@ -97,7 +97,7 @@
                                             <Setter Property="HorizontalAlignment" Value="Center"/>
                                         </Style>
                                     </StackPanel.Resources>
-                                    <StackPanel Orientation="Vertical">
+                                    <StackPanel Orientation="Vertical" VerticalAlignment="Center">
                                         <StackPanel Orientation="Horizontal">
                                             <StackPanel.Resources>
                                                 <Style TargetType="Image">
@@ -117,7 +117,7 @@
                                                     <Setter Property="Height" Value="30"/>
                                                     <Setter Property="Width" Value="30"/>
                                                     <Setter Property="HorizontalAlignment" Value="Center"/>
-                                                    <Setter Property="Margin" Value="2,5,0,0"/>
+                                                    <Setter Property="Margin" Value="2,2,0,0"/>
                                                 </Style>
                                             </StackPanel.Resources>
                                             <Image Source="{Binding UsersPlayer.ItemFour.ItemIconPath}"/>
@@ -125,7 +125,7 @@
                                             <Image Source="{Binding UsersPlayer.ItemSix.ItemIconPath}"/>
                                         </StackPanel>
                                     </StackPanel>
-                                    <Image Source="{Binding UsersPlayer.Trinket.ItemIconPath}" VerticalAlignment="Center" Margin="2,0,0,0"/>
+                                    <Image Source="{Binding UsersPlayer.Trinket.ItemIconPath}" Margin="2,0,0,0"/>
                                 </StackPanel>
 
                                 <!-- Overall champion icons panel-->
