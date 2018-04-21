@@ -17,8 +17,6 @@ namespace LeagueCloudCoachDesktop.DtoToModelConverter
         private static readonly IEnumerable<SummonerSpellDto> SummonerSpells = StaticDataProvider.GetSummonerSpellsStatic().Result;
         private static readonly IEnumerable<ChampionDto> Champions = StaticDataProvider.GetChampionsStatic().Result;
 
-
-
         public static Match ConverMatchDtoToMatch(MatchDto matchDto, MatchTimelineDto matchTimelineDto)
         {
             if(matchDto == null || matchTimelineDto == null) return new Match();
@@ -101,7 +99,7 @@ namespace LeagueCloudCoachDesktop.DtoToModelConverter
 
         public static MatchPlayer ConvertMatchPlayerDtoToMatchPlayer(MatchPlayerDto matchPlayerDto, IEnumerable<MatchEventDto> matchEventDtoList)
         {
-            if (matchPlayerDto == null) return new MatchPlayer();
+            if (matchPlayerDto == null || matchEventDtoList == null) return new MatchPlayer();
             
             try
             {
