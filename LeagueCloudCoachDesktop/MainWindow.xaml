@@ -9,8 +9,9 @@
         Title="LeagueCloudCoach"
         d:DesignHeight="600"
         d:DesignWidth="1200"
-        MinHeight="600" 
-        MinWidth="1200"
+        MinHeight="700" 
+        MinWidth="1250"
+        WindowState="Maximized"
         DataContext="{Binding Main, Source={StaticResource Locator}}">
 
     <materialDesign:DialogHost>

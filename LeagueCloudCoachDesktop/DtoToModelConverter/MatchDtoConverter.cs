@@ -151,28 +151,29 @@ namespace LeagueCloudCoachDesktop.DtoToModelConverter
             {
                 var matchEventList = new List<MatchEvent>();
 
-                foreach (var matchEvent in matchEventDtoList)
+                foreach (var matchEventDto in matchEventDtoList)
                 {
                     matchEventList.Add(new MatchEvent
                     {
-                        Type = matchEvent.Type,
-                        Timestamp = matchEvent.Timestamp,
-                        ParticipantId = matchEvent.ParticipantId,
-                        ItemId = matchEvent.ItemId,
-                        SkillSlot = matchEvent.SkillSlot,
-                        LevelUpType = matchEvent.LevelUpType,
-                        WardType = matchEvent.WardType,
-                        CreatorId = matchEvent.CreatorId,
-                        KillerId = matchEvent.KillerId,
-                        VictimId = matchEvent.VictimId,
-                        AfterId = matchEvent.AfterId,
-                        BeforeId = matchEvent.BeforeId,
-                        TeamId = matchEvent.TeamId,
-                        BuildingType = matchEvent.BuildingType,
-                        LaneType = matchEvent.LaneType,
-                        TowerType = matchEvent.TowerType,
-                        MonsterType = matchEvent.MonsterType,
-                        MonsterSubType = matchEvent.MonsterSubType
+                        Type = matchEventDto.Type,
+                        TimeStamp = matchEventDto.Timestamp,
+                        UserFriendlyTimestamp = TimeSpanUtils.ConvertTimespanToFriendly(Convert.ToInt32(matchEventDto.Timestamp.TotalSeconds)),
+                        ParticipantId = matchEventDto.ParticipantId,
+                        ItemId = matchEventDto.ItemId,
+                        SkillSlot = matchEventDto.SkillSlot,
+                        LevelUpType = matchEventDto.LevelUpType,
+                        WardType = matchEventDto.WardType,
+                        CreatorId = matchEventDto.CreatorId,
+                        KillerId = matchEventDto.KillerId,
+                        VictimId = matchEventDto.VictimId,
+                        AfterId = matchEventDto.AfterId,
+                        BeforeId = matchEventDto.BeforeId,
+                        TeamId = matchEventDto.TeamId,
+                        BuildingType = matchEventDto.BuildingType,
+                        LaneType = matchEventDto.LaneType,
+                        TowerType = matchEventDto.TowerType,
+                        MonsterType = matchEventDto.MonsterType,
+                        MonsterSubType = matchEventDto.MonsterSubType
                     });
                 }
 

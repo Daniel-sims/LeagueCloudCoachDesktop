@@ -1,94 +1,115 @@
 ﻿<UserControl x:Class="LeagueCloudCoachDesktop.View.Matchup.Popup.DetailedMatchupPlayerView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:LeagueCloudCoachDesktop.View.Matchup.Popup"
-             xmlns:const="clr-namespace:LeagueCloudCoachDesktop.Constants"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:const="clr-namespace:LeagueCloudCoachDesktop.Constants"
              mc:Ignorable="d" 
              d:DesignHeight="300" 
              d:DesignWidth="300"
              Width="1000">
 
-    <Grid Margin="15,15,15,15">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
+    <ScrollViewer VerticalScrollBarVisibility="Visible" Width="auto" Height="auto">
+        <Grid Margin="15,15,15,15">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
 
-        <StackPanel Grid.Row="0" Orientation="Horizontal">
-            <StackPanel Orientation="Vertical" >
-                <Image Source="{Binding Player.Champion.ChampionIconPath}" ToolTip="{Binding Player.Champion.ChampionName}" Height="50" Width="50" />
-                <StackPanel Orientation="Horizontal">
-                    <StackPanel.Resources>
-                        <Style TargetType="Image">
-                            <Setter Property="Height" Value="25"/>
-                            <Setter Property="Width" Value="25"/>
-                        </Style>
-                    </StackPanel.Resources>
-                    <Image Source="{Binding Player.SummonerSpellOne.SummonerSpellIconPath}" ToolTip="{Binding Player.SummonerSpellOne.SummonerSpellName}"/>
-                    <Image Source="{Binding Player.SummonerSpellTwo.SummonerSpellIconPath}" ToolTip="{Binding Player.SummonerSpellTwo.SummonerSpellName}"/>
+            <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,10">
+                <StackPanel Orientation="Vertical" >
+                    <Image Source="{Binding Player.Champion.ChampionIconPath}" ToolTip="{Binding Player.Champion.ChampionName}" Height="50" Width="50"/>
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel.Resources>
+                            <Style TargetType="Image">
+                                <Setter Property="Height" Value="25"/>
+                                <Setter Property="Width" Value="25"/>
+                            </Style>
+                        </StackPanel.Resources>
+                        <Image Source="{Binding Player.SummonerSpellOne.SummonerSpellIconPath}" ToolTip="{Binding Player.SummonerSpellOne.SummonerSpellName}"/>
+                        <Image Source="{Binding Player.SummonerSpellTwo.SummonerSpellIconPath}" ToolTip="{Binding Player.SummonerSpellTwo.SummonerSpellName}"/>
+                    </StackPanel>
                 </StackPanel>
+                <TextBlock Text="{Binding Player.SummonerName}" Style="{StaticResource MaterialDesignTitleTextBlock}" FontWeight="Thin" Foreground="{StaticResource PrimaryHueMidBrush}" Margin="10,0,0,0"/>
             </StackPanel>
 
-            <TextBlock Text="{Binding Player.SummonerName}" Style="{StaticResource MaterialDesignTitleTextBlock}" FontWeight="Thin" Foreground="{StaticResource PrimaryHueMidBrush}" Margin="10,0,0,0"/>
-        </StackPanel>
+            <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Vertical" HorizontalAlignment="Left" Width="800">
+                <TextBlock Text="Build" Style="{StaticResource MaterialDesignTitleTextBlock}" FontWeight="Thin" Foreground="{StaticResource PrimaryHueDarkBrush}"/>
+                <TextBlock Text="Final Items" Style="{StaticResource MaterialDesignTitleTextBlock}" FontWeight="Thin" FontSize="12" Margin="0,0,0,10"/>
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,0,0,10">
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel.Resources>
+                            <Style TargetType="Image">
+                                <Setter Property="Height" Value="25"/>
+                                <Setter Property="Width" Value="25"/>
+                                <Setter Property="Margin" Value="0,0,5,0"/>
+                            </Style>
+                        </StackPanel.Resources>
+                        <Image Source="{Binding Player.ItemOne.ItemIconPath}" ToolTip="{Binding Player.ItemOne.ItemName}"/>
+                        <Image Source="{Binding Player.ItemTwo.ItemIconPath}" ToolTip="{Binding Player.ItemTwo.ItemName}"/>
+                        <Image Source="{Binding Player.ItemThree.ItemIconPath}" ToolTip="{Binding Player.ItemThree.ItemName}"/>
+                        <Image Source="{Binding Player.ItemFour.ItemIconPath}" ToolTip="{Binding Player.ItemFour.ItemName}"/>
+                        <Image Source="{Binding Player.ItemFive.ItemIconPath}" ToolTip="{Binding Player.ItemFive.ItemName}"/>
+                        <Image Source="{Binding Player.ItemSix.ItemIconPath}" ToolTip="{Binding Player.ItemSix.ItemName}"/>
+                        <Image Source="{Binding Player.Trinket.ItemIconPath}" ToolTip="{Binding Player.Trinket.ItemName}"/>
+                    </StackPanel>
+                </StackPanel>
 
-        <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Vertical" Margin="0,0,0,15">
-            <TextBlock Text="Items" Style="{StaticResource MaterialDesignTitleTextBlock}"/>
-            <ItemsControl ItemsSource="{Binding ItemEvents}" Grid.IsSharedSizeScope="True">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <WrapPanel>
-                            <Grid Margin="15,0,15,10">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition/>
-                                    <RowDefinition/>
-                                    <RowDefinition/>
-                                    <RowDefinition/>
-                                </Grid.RowDefinitions>
+                <TextBlock Text="Build timeline" Style="{StaticResource MaterialDesignTitleTextBlock}" FontWeight="Thin" FontSize="12" Margin="0,0,0,10"/>
 
-                                <TextBlock Grid.Row="0" HorizontalAlignment="Center" Text="{Binding Timestamp}" FontWeight="Bold" />
-                                <Image Grid.Row="1" Source="{Binding ItemImage}" Height="25" Width="25" ToolTip="{Binding Item.ItemName}" />
+                <ItemsControl ItemsSource="{Binding ItemEvents}" Grid.IsSharedSizeScope="True">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <WrapPanel>
+                                <Grid Margin="0,0,15,0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                    </Grid.RowDefinitions>
 
-                                <materialDesign:PackIcon Grid.Row="2" HorizontalAlignment="Center" Margin="0,3,0,0" Height="20" Width="20">
-                                    <materialDesign:PackIcon.Style>
-                                        <Style TargetType="materialDesign:PackIcon" BasedOn="{StaticResource {x:Type materialDesign:PackIcon}}">
-                                            <Style.Triggers>
-                                                <DataTrigger Binding="{Binding Type}" Value="{x:Static const:UserEventType.ItemPurchased}">
-                                                    <Setter Property="Kind" Value="CashUsd"/>
-                                                    <Setter Property="ToolTip" Value="Buy"/>
-                                                </DataTrigger>
+                                    <TextBlock Grid.Row="0" HorizontalAlignment="Center" Text="{Binding UserFriendlyTimestamp}" FontWeight="Bold" />
+                                    <Image Grid.Row="1" Source="{Binding Item.ItemIconPath}" Height="25" Width="25" ToolTip="{Binding Item.ItemName}" />
 
-                                                <DataTrigger Binding="{Binding Type}" Value="{x:Static const:UserEventType.ItemUndo}">
-                                                    <Setter Property="Kind" Value="Undo"/>
-                                                    <Setter Property="ToolTip" Value="Undo"/>
-                                                </DataTrigger>
+                                    <materialDesign:PackIcon Grid.Row="2" HorizontalAlignment="Center" Margin="0,3,0,0" Height="20" Width="20">
+                                        <materialDesign:PackIcon.Style>
+                                            <Style TargetType="materialDesign:PackIcon" BasedOn="{StaticResource {x:Type materialDesign:PackIcon}}">
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding Type}" Value="{x:Static const:UserEventType.ItemPurchased}">
+                                                        <Setter Property="Kind" Value="CashUsd"/>
+                                                        <Setter Property="ToolTip" Value="Buy"/>
+                                                    </DataTrigger>
 
-                                                <DataTrigger Binding="{Binding Type}" Value="{x:Static const:UserEventType.ItemDestroyed}">
-                                                    <Setter Property="Kind" Value="Backburger"/>
-                                                    <Setter Property="ToolTip" Value="Sold"/>
-                                                </DataTrigger>
-                                            </Style.Triggers>
-                                        </Style>
-                                    </materialDesign:PackIcon.Style>
-                                </materialDesign:PackIcon>
+                                                    <DataTrigger Binding="{Binding Type}" Value="{x:Static const:UserEventType.ItemUndo}">
+                                                        <Setter Property="Kind" Value="Undo"/>
+                                                        <Setter Property="ToolTip" Value="Undo previous buy"/>
+                                                    </DataTrigger>
 
-                                <Separator Grid.Row="3" Background="{StaticResource SeperatorGrey}" VerticalAlignment="Bottom" Margin="-15,5,-15,0"/>
-                            </Grid>
-                        </WrapPanel>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <WrapPanel/>
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-            </ItemsControl>
-        </StackPanel>
+                                                    <DataTrigger Binding="{Binding Type}" Value="{x:Static const:UserEventType.ItemDestroyed}">
+                                                        <Setter Property="Kind" Value="Backburger"/>
+                                                        <Setter Property="ToolTip" Value="Used"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </materialDesign:PackIcon.Style>
+                                    </materialDesign:PackIcon>
 
+                                    <Separator Grid.Row="3" Background="{StaticResource SeperatorGrey}" VerticalAlignment="Bottom" Margin="0,5,-15,0"/>
+                                </Grid>
+                            </WrapPanel>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                </ItemsControl>
+            </StackPanel>
 
-        <Button Grid.Row="1" Content="Close" Width="75" VerticalAlignment="Bottom" HorizontalAlignment="Right" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"/>
-    </Grid>
+            <Button Grid.Row="1" Content="Close" Width="75" VerticalAlignment="Bottom" HorizontalAlignment="Right" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"/>
+        </Grid>
+    </ScrollViewer>
 </UserControl>

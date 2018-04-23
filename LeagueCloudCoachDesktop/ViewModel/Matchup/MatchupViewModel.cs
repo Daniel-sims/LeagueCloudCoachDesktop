@@ -62,13 +62,7 @@ namespace LeagueCloudCoachDesktop.ViewModel.Matchup
         }
 
         private RelayCommand _resetCommand;
-        public RelayCommand ResetCommand
-        {
-            get
-            {
-                return _resetCommand ?? (_resetCommand = new RelayCommand(() => { Matchups = null; }));
-            }
-        }
+        public RelayCommand ResetCommand => _resetCommand ?? (_resetCommand = new RelayCommand(() => { Matchups = null; }));
 
         private RelayCommand _onSearchCommand;
         public RelayCommand OnSearchCommand

@@ -4,6 +4,7 @@ using LeagueCloudCoachDesktop.Providers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 
 namespace LeagueCloudCoachDesktop.Models.MatchData
 {
@@ -13,7 +14,9 @@ namespace LeagueCloudCoachDesktop.Models.MatchData
 
         public string Type { get; set; }
 
-        public TimeSpan Timestamp { get; set; }
+        public TimeSpan TimeStamp { get; set; }
+
+        public string UserFriendlyTimestamp { get; set; }
 
         public long? ParticipantId { get; set; }
 
