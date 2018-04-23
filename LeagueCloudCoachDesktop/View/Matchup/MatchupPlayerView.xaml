@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:LeagueCloudCoachDesktop.View.Matchup"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="100" d:DesignWidth="550">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto"/>
@@ -68,7 +68,7 @@
                         <Setter Property="Margin" Value="5,0,0,0"/>
                     </Style>
                 </StackPanel.Resources>
-                <Image Source="{Binding Player.PrimaryRuneStyle.RuneIconPath}" ToolTip="{Binding Player.PrimaryRuneStyle.RuneName}"/>
+                <Image Source="{Binding Player.PrimaryRuneStyle.RunePathIconPath}" ToolTip="{Binding Player.PrimaryRuneStyle.RunePathName}"/>
                 <Image Source="{Binding Player.PrimaryRuneSubStyleOne.RuneIconPath}" ToolTip="{Binding Player.PrimaryRuneSubStyleOne.RuneName}"/>
                 <Image Source="{Binding Player.PrimaryRuneSubStyleTwo.RuneIconPath}" ToolTip="{Binding Player.PrimaryRuneSubStyleTwo.RuneName}"/>
                 <Image Source="{Binding Player.PrimaryRuneSubStyleThree.RuneIconPath}" ToolTip="{Binding Player.PrimaryRuneSubStyleThree.RuneName}"/>
@@ -82,7 +82,7 @@
                         <Setter Property="Margin" Value="5,5,0,0"/>
                     </Style>
                 </StackPanel.Resources>
-                <Image Source="{Binding Player.SecondaryRuneStyle.RuneIconPath}" ToolTip="{Binding Player.SecondaryRuneStyle.RuneName}"/>
+                <Image Source="{Binding Player.SecondaryRuneStyle.RunePathIconPath}" ToolTip="{Binding Player.SecondaryRuneStyle.RunePathName}"/>
                 <Image Source="{Binding Player.SecondaryRuneSubStyleOne.RuneIconPath}" ToolTip="{Binding Player.SecondaryRuneSubStyleOne.RuneName}"/>
                 <Image Source="{Binding Player.SecondaryRuneSubStyleTwo.RuneIconPath}" ToolTip="{Binding Player.SecondaryRuneSubStyleTwo.RuneName}"/>
             </StackPanel>

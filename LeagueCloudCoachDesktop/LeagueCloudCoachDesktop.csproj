@@ -101,11 +101,13 @@
     </ApplicationDefinition>
     <Compile Include="Constants\ImageLocationStrings.cs" />
     <Compile Include="Constants\MessageTypes\ChangeMainPageMessage.cs" />
+    <Compile Include="Constants\UserEventType.cs" />
     <Compile Include="Controller\Interfaces\IMatchController.cs" />
     <Compile Include="Controller\Interfaces\IStaticDataController.cs" />
     <Compile Include="Controller\MatchController.cs" />
     <Compile Include="Controller\StaticDataController.cs" />
     <Compile Include="DtoToModelConverter\MatchDtoConverter.cs" />
+    <Compile Include="DtoToModelConverter\StaticDataDtoConverter.cs" />
     <Compile Include="Dto\MatchData\MatchEventDto.cs" />
     <Compile Include="Dto\MatchData\MatchTimelineDto.cs" />
     <Compile Include="HttpRequest\HttpRequestWrapper.cs" />

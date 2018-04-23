@@ -8,6 +8,8 @@ namespace LeagueCloudCoachDesktop.Models.StaticData
 {
     public class SummonerSpell
     {
+        public long SummonerSpellId { get; set; }
+
         public string SummonerSpellName { get; set; }
 
         public string SummonerSpellIconPath { get; set; }

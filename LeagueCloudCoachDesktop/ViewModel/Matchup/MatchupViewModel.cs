@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using LeagueCloudCoachDesktop.Dto.MatchData;
 using LeagueCloudCoachDesktop.Models.MatchData;
+using LeagueCloudCoachDesktop.Models.StaticData;
 
 namespace LeagueCloudCoachDesktop.ViewModel.Matchup
 {
@@ -44,7 +45,7 @@ namespace LeagueCloudCoachDesktop.ViewModel.Matchup
             }
         }
 
-        private IEnumerable<ChampionDto> ChampionsStaticData { get; set; }
+        private IEnumerable<Champion> ChampionsStaticData { get; set; }
 
         private ObservableCollection<string> _championStrings = new ObservableCollection<string>();
         public ObservableCollection<string> ChampionStrings
@@ -115,7 +116,6 @@ namespace LeagueCloudCoachDesktop.ViewModel.Matchup
             {
                 foreach (var matchup in returnedMatches)
                 {
-
                     var matchTimeline = await MatchController.GetMatchTimelineForGameId(matchup.GameId);
 
                     if (matchTimeline != null)

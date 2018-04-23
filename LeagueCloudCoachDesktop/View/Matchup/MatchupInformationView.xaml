@@ -36,8 +36,8 @@
                                     </StackPanel>
                                 </StackPanel>
                                 <StackPanel Orientation="Vertical" VerticalAlignment="Center" Margin="10,0,0,0">
-                                    <Image Source="{Binding UsersPlayer.PrimaryRuneStyle.RuneIconPath}" HorizontalAlignment="Left" Height="25" Width="25" />
-                                    <Image Source="{Binding UsersPlayer.SecondaryRuneStyle.RuneIconPath}" HorizontalAlignment="Left" Height="25" Width="25" />
+                                    <Image Source="{Binding UsersPlayer.PrimaryRuneStyle.RunePathIconPath}" HorizontalAlignment="Left" Height="25" Width="25" />
+                                    <Image Source="{Binding UsersPlayer.SecondaryRuneStyle.RunePathIconPath}" HorizontalAlignment="Left" Height="25" Width="25" />
                                 </StackPanel>
 
                                 <StackPanel Orientation="Horizontal" Margin="15,0,0,0" Width="125">

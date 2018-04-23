@@ -1,13 +1,16 @@
-﻿using System;
+﻿using LeagueCloudCoachDesktop.Constants;
+using LeagueCloudCoachDesktop.Models.StaticData;
+using LeagueCloudCoachDesktop.Providers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LeagueCloudCoachDesktop.Models.MatchData
 {
     public class MatchEvent
     {
+        private static readonly IEnumerable<Item> Items = StaticDataProvider.GetItemsStatic().Result;
+
         public string Type { get; set; }
 
         public TimeSpan Timestamp { get; set; }
@@ -16,6 +19,8 @@ namespace LeagueCloudCoachDesktop.Models.MatchData
 
         public long? ItemId { get; set; }
 
+        public Item Item => Items.FirstOrDefault(x => x.ItemId == ItemId);
+        
         public long? SkillSlot { get; set; }
 
         public string LevelUpType { get; set; }
