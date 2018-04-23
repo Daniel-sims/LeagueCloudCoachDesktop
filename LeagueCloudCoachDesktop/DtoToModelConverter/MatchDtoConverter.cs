@@ -7,6 +7,7 @@ using LeagueCloudCoachDesktop.Providers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using LeagueCloudCoachDesktop.Utils;
 
 namespace LeagueCloudCoachDesktop.DtoToModelConverter
 {
@@ -25,7 +26,7 @@ namespace LeagueCloudCoachDesktop.DtoToModelConverter
             {
                 return new Match
                 {
-                    GameDuration = matchDto.GameDuration,
+                    GameDuration = TimeSpanUtils.ConvertTimespanToFriendly(Convert.ToInt32(matchDto.GameDuration.TotalSeconds)),
                     GameDate = matchDto.GameDate,
                     GamePatch = matchDto.GamePatch,
                     WinningTeamId = matchDto.WinningTeamId,

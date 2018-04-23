@@ -12,7 +12,7 @@ namespace LeagueCloudCoachDesktop.Models.MatchData
     /* Matchup object to bind to kind of like a business object I suppose?*/
     public class Match
     {
-        public TimeSpan GameDuration { get; set; }
+        public string GameDuration { get; set; }
 
         public DateTime GameDate { get; set; }
 
