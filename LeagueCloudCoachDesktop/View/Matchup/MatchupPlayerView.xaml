@@ -118,7 +118,11 @@
             <Image Source="{Binding Player.Trinket.ItemIconPath}" ToolTip="{Binding Player.Trinket.ItemName}" Height="25" Width="25" Margin="5,5,0,0"/>
         </StackPanel>
 
-        <Button Grid.Column="4" Command="{Binding ShowDetailedMatchInfoforPlayerCommand}" Width="75" Height="20" Margin="10,0,0,0" Content="Detailed" FontSize="10" FontWeight="Thin" VerticalAlignment="Center"/>
+        <TextBlock Grid.Column="4" FontSize="12" FontWeight="Thin" Margin="25,0,0,0" VerticalAlignment="Bottom" HorizontalAlignment="Right">           
+            <Hyperlink Command="{Binding ShowDetailedMatchInfoforPlayerCommand}">
+                Detailed >
+            </Hyperlink>
+        </TextBlock>
     </Grid>
 </UserControl>
 
