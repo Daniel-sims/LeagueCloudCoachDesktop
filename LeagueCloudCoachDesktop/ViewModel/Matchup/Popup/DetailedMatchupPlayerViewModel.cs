@@ -16,8 +16,7 @@ namespace LeagueCloudCoachDesktop.ViewModel.Matchup.Popup
 
         public IEnumerable<MatchEvent> ItemEvents
         {
-            get { return Player.MatchEvents.Where(x => x.Type == UserEventType.ItemDestroyed || 
-                                                       x.Type == UserEventType.ItemPurchased || 
+            get { return Player.MatchEvents.Where(x => x.Type == UserEventType.ItemPurchased || 
                                                        x.Type == UserEventType.ItemUndo).OrderBy(x =>x.TimeStamp); }
         }
     }

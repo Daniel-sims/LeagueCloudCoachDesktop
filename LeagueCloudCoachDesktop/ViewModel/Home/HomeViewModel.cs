@@ -1,9 +1,8 @@
-﻿using System;
+﻿using GalaSoft.MvvmLight;
+using LeagueCloudCoachDesktop.Models.StaticData;
+using LeagueCloudCoachDesktop.Providers;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using GalaSoft.MvvmLight;
 
 namespace LeagueCloudCoachDesktop.ViewModel.Home
 {

@@ -6,7 +6,8 @@
              xmlns:local="clr-namespace:LeagueCloudCoachDesktop.View.Matchup"
              xmlns:converter="clr-namespace:LeagueCloudCoachDesktop.View.Converter"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="1600">
+             d:DesignHeight="300" 
+             d:DesignWidth="1600">
 
     <UserControl.Resources>
         <converter:MatchupBoolToColourConverter x:Key="BoolToColourConverter"/>

@@ -5,39 +5,39 @@
                     xmlns:loginV="clr-namespace:LeagueCloudCoachDesktop.View.Login"
                     xmlns:applicationVm="clr-namespace:LeagueCloudCoachDesktop.ViewModel.Application"
                     xmlns:applicationV="clr-namespace:LeagueCloudCoachDesktop.View.Application"
-                    xmlns:HomeVm="clr-namespace:LeagueCloudCoachDesktop.ViewModel.Home"
-                    xmlns:HomeV="clr-namespace:LeagueCloudCoachDesktop.View.Home"
-                    xmlns:MatchupVm="clr-namespace:LeagueCloudCoachDesktop.ViewModel.Matchup"
-                    xmlns:MatchupV="clr-namespace:LeagueCloudCoachDesktop.View.Matchup"
-                    xmlns:MatchupPopupVm="clr-namespace:LeagueCloudCoachDesktop.ViewModel.Matchup.Popup"
-                    xmlns:MatchupPopupV="clr-namespace:LeagueCloudCoachDesktop.View.Matchup.Popup">
+                    xmlns:homeVm="clr-namespace:LeagueCloudCoachDesktop.ViewModel.Home"
+                    xmlns:homeV="clr-namespace:LeagueCloudCoachDesktop.View.Home"
+                    xmlns:matchupVm="clr-namespace:LeagueCloudCoachDesktop.ViewModel.Matchup"
+                    xmlns:matchupV="clr-namespace:LeagueCloudCoachDesktop.View.Matchup"
+                    xmlns:matchupPopupVm="clr-namespace:LeagueCloudCoachDesktop.ViewModel.Matchup.Popup"
+                    xmlns:matchupPopupV="clr-namespace:LeagueCloudCoachDesktop.View.Matchup.Popup">
 
     <DataTemplate DataType="{x:Type loginVm:LoginViewModel}">
         <loginV:LoginView />
     </DataTemplate>
-
+    
     <DataTemplate DataType="{x:Type applicationVm:MainApplicationViewModel}">
         <applicationV:MainApplicationView />
     </DataTemplate>
 
-    <DataTemplate DataType="{x:Type HomeVm:HomeViewModel}">
-        <HomeV:HomeView />
+    <DataTemplate DataType="{x:Type homeVm:HomeViewModel}">
+        <homeV:HomeView />
     </DataTemplate>
 
-    <DataTemplate DataType="{x:Type MatchupVm:MatchupViewModel}">
-        <MatchupV:MatchupView />
+    <DataTemplate DataType="{x:Type matchupVm:MatchupViewModel}">
+        <matchupV:MatchupView />
     </DataTemplate>
 
-    <DataTemplate DataType="{x:Type MatchupVm:MatchupInformationViewModel}">
-        <MatchupV:MatchupInformationView />
+    <DataTemplate DataType="{x:Type matchupVm:MatchupInformationViewModel}">
+        <matchupV:MatchupInformationView />
     </DataTemplate>
 
-    <DataTemplate DataType="{x:Type MatchupVm:MatchupPlayerViewModel}">
-        <MatchupV:MatchupPlayerView />
+    <DataTemplate DataType="{x:Type matchupVm:MatchupPlayerViewModel}">
+        <matchupV:MatchupPlayerView />
     </DataTemplate>
 
-    <DataTemplate DataType="{x:Type MatchupPopupVm:DetailedMatchupPlayerViewModel}">
-        <MatchupPopupV:DetailedMatchupPlayerView/>
+    <DataTemplate DataType="{x:Type matchupPopupVm:DetailedMatchupPlayerViewModel}">
+        <matchupPopupV:DetailedMatchupPlayerView/>
     </DataTemplate>
 
 </ResourceDictionary>

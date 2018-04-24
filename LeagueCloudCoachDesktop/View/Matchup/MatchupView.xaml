@@ -6,9 +6,10 @@
              xmlns:local="clr-namespace:LeagueCloudCoachDesktop.View.Matchup"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300"
-             DataContext="{Binding Matchup, Source={StaticResource Locator}}"
-             Background="{StaticResource DefaultApplicationBackgroundWhiteSmoke}">
+             d:DesignHeight="300" 
+             d:DesignWidth="300"
+             Background="{StaticResource DefaultApplicationBackgroundWhiteSmoke}"
+             DataContext="{Binding Matchup, Source={StaticResource Locator}}">
 
     <ScrollViewer VerticalScrollBarVisibility="Visible" Width="auto" Height="auto">
         <Grid>

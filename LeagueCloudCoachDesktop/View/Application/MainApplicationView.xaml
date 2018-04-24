@@ -13,7 +13,6 @@
              d:DesignWidth="1600"
              Background="{StaticResource DefaultApplicationBackgroundWhiteSmoke}">
     
-    
     <UserControl.Resources>
         <Style TargetType="{x:Type dragablz:TabablzControl}" BasedOn="{StaticResource MaterialDesignTabablzControlStyle}" />
     </UserControl.Resources>
